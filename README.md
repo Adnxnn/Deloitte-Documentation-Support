@@ -6,6 +6,7 @@ A maximalist, responsive support workbench that converts complete support intera
 
 - Captures distinct issues, business impact, questions, confirmed information and outcomes.
 - Distinguishes analyst actions, user actions, advice, planned work and pending ownership.
+- Writes every analyst action from the note author's first-person point of view without referring to "the agent."
 - Records Zoom, screen-sharing, escalation, SLA and timeframe details when present.
 - Preserves exact URLs and explains the purpose of each source.
 - Removes greetings, small talk, repetition and closing messages.
