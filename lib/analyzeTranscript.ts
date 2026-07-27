@@ -2,9 +2,7 @@ export type AnalyzerOutput = {
   workNotes: {
     issue: string;
     tsPerformed: string[];
-    output: string;
   };
-  resolutionNotes: string;
 };
 
 const ACTION_VERBS = [
@@ -365,8 +363,6 @@ export function analyzeTranscriptLocally(transcript: string): AnalyzerOutput {
         actions.length > 0
           ? actions
           : ["No troubleshooting actions were clearly documented in the supplied interaction."],
-      output: outcome,
     },
-    resolutionNotes,
   };
 }
