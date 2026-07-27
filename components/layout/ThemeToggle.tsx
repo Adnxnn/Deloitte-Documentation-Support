@@ -33,14 +33,14 @@ export function ThemeToggle({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "relative inline-flex h-10 items-center rounded-2xl border border-border/70 bg-secondary/60 p-1 shadow-inner",
+        "relative inline-flex h-10 items-center rounded-2xl border border-border/70 bg-secondary/60 p-1 shadow-inner dark:rounded-none dark:border-[#86bc25]/30 dark:bg-[#080a08]",
         className,
       )}
     >
       {mounted && (
         <span
           aria-hidden
-          className="pointer-events-none absolute top-1 bottom-1 rounded-xl bg-card shadow-sm ring-1 ring-border/50 transition-all duration-300 ease-out"
+          className="pointer-events-none absolute bottom-1 top-1 rounded-xl bg-card shadow-sm ring-1 ring-border/50 transition-[left,width,background-color] duration-300 ease-out dark:rounded-none dark:bg-[#121711] dark:ring-[#86bc25]/35"
           style={{ left: bgLeft, width: bgWidth }}
         />
       )}
@@ -53,9 +53,9 @@ export function ThemeToggle({ className }: { className?: string }) {
                 type="button"
                 onClick={() => setTheme(value)}
                 className={cn(
-                  "relative z-10 inline-flex h-8 w-[calc((100%-8px)/3)] items-center justify-center gap-1.5 rounded-xl text-xs font-medium transition-colors",
+                  "relative z-10 inline-flex h-8 w-[calc((100%-8px)/3)] items-center justify-center gap-1.5 rounded-xl text-xs font-medium transition-colors dark:rounded-none",
                   isActive
-                    ? "text-foreground"
+                    ? "text-foreground dark:text-[#b9df73]"
                     : "text-muted-foreground hover:text-foreground/80",
                 )}
                 aria-label={`Set theme to ${label}`}
