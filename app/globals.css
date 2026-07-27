@@ -2,11 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap");
 
 @layer base {
   :root {
     --font-inter: "Inter";
+    --font-display: "Archivo Black";
+    --font-mono: "IBM Plex Mono";
     --background: 60 15% 95%;
     --foreground: 0 0% 7%;
     --card: 0 0% 100%;
@@ -90,6 +92,14 @@
     transition: background-color 300ms ease, color 300ms ease;
   }
 
+  .font-display {
+    font-family: var(--font-display), "Arial Black", sans-serif;
+  }
+
+  .font-mono {
+    font-family: var(--font-mono), monospace;
+  }
+
   body::before {
     content: "";
     position: fixed;
@@ -134,8 +144,8 @@
   }
 
   ::selection {
-    color: white;
-    background: rgba(92, 143, 243, 0.58);
+    color: #111;
+    background: #86bc25;
   }
 
   :focus-visible {
