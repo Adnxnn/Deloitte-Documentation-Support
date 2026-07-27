@@ -6,7 +6,7 @@ import { Providers } from "./providers";
 export const metadata: Metadata = {
   title: "Deloitte Documentation Support Tool",
   description:
-    "Convert customer support interactions into grounded Work Notes and concise Resolution Notes for ITSM workflows.",
+    "Convert customer support interactions into accurate, grounded Work Notes for ITSM workflows.",
 };
 
 export const viewport = {
