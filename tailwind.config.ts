@@ -67,9 +67,9 @@ const config: Config = {
           lime: "#5D810E",
           ink: "#111111",
           light: "#FBF8F3",
-          dark: "#0A1224",
-          darkCard: "#131E36",
-          darkCardSecondary: "#1B2946",
+          dark: "#050605",
+          darkCard: "#080A08",
+          darkCardSecondary: "#10140E",
         },
       },
       borderRadius: {
@@ -83,7 +83,7 @@ const config: Config = {
       boxShadow: {
         card: "0 1px 2px rgba(0,0,0,0.04), 0 8px 24px -12px rgba(15, 23, 42, 0.08)",
         "card-hover": "0 4px 8px rgba(0,0,0,0.06), 0 20px 40px -20px rgba(15, 23, 42, 0.18)",
-        glow: "0 0 0 1px rgba(255,255,255,0.06), 0 12px 32px -8px rgba(46, 107, 230, 0.25)",
+        glow: "0 0 0 1px rgba(255,255,255,0.06), 0 12px 32px -8px rgba(134, 188, 37, 0.24)",
       },
       keyframes: {
         "accordion-down": {
