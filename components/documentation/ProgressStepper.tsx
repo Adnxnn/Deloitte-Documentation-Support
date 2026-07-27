@@ -28,7 +28,7 @@ export function ProgressStepper() {
       animate={{ opacity: 1, height: "auto" }}
       exit={{ opacity: 0, height: 0 }}
       transition={{ duration: 0.35 }}
-      className="rounded-2xl border border-border/70 bg-card/70 p-4"
+      className="rounded-2xl border border-border/70 bg-card/70 p-4 dark:rounded-none dark:border-[#86bc25]/25 dark:bg-[#080a08]"
     >
       <div className="mb-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
