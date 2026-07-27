@@ -87,7 +87,7 @@ export function OutputCards() {
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.06, ease: "easeOut" }}
-      className="relative isolate min-h-[640px] overflow-hidden border border-black bg-[#111] text-white shadow-[8px_8px_0_#86bc25]"
+      className="relative isolate min-h-[640px] overflow-hidden border border-black bg-[#111] text-white shadow-[8px_8px_0_#86bc25] transition-[background-color,border-color] duration-300 dark:border-white/20 dark:bg-[#050605]"
       aria-labelledby="results-heading"
     >
       <ResultsBackdrop />
@@ -96,7 +96,7 @@ export function OutputCards() {
         <div className="mb-5 flex flex-col gap-4 border-b border-white/25 pb-5 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <div className="flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/15 bg-white/[0.08] shadow-[0_12px_30px_-22px_rgba(25,38,67,0.28)]">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/15 bg-white/[0.08] shadow-[0_12px_30px_-22px_rgba(0,0,0,0.72)] dark:rounded-none">
                 <Layers3 className="h-4.5 w-4.5 text-[#86bc25]" strokeWidth={1.8} />
               </div>
               <div>
@@ -181,7 +181,7 @@ export function OutputCards() {
             initial={{ opacity: 0, y: 16, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.96 }}
-            className="absolute bottom-5 left-1/2 z-30 flex -translate-x-1/2 items-center gap-2 rounded-full border border-emerald-200 bg-white/92 px-4 py-2.5 text-xs font-medium text-emerald-700 shadow-xl backdrop-blur-xl"
+            className="absolute bottom-5 left-1/2 z-30 flex -translate-x-1/2 items-center gap-2 rounded-full border border-emerald-200 bg-white/92 px-4 py-2.5 text-xs font-medium text-emerald-700 shadow-xl backdrop-blur-xl dark:rounded-none dark:border-[#86bc25]/55 dark:bg-[#0a0d09]/95 dark:text-[#b9df73]"
           >
             <Check className="h-3.5 w-3.5" />
             Copied successfully
@@ -218,14 +218,14 @@ function NotesCard({ title, icon: Icon, accent, action, children }: NotesCardPro
     <motion.article
       whileHover={{ y: -2 }}
       transition={{ duration: 0.25 }}
-      className="group relative overflow-hidden border border-white/25 bg-white/[0.055] shadow-[5px_5px_0_rgba(134,188,37,0.12)]"
+      className="group relative overflow-hidden border border-white/25 bg-white/[0.055] shadow-[5px_5px_0_rgba(134,188,37,0.12)] dark:bg-[#0b0e0a]"
     >
       <div aria-hidden className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${tones.glow}`} />
       <div aria-hidden className={`pointer-events-none absolute inset-x-12 top-0 h-px bg-gradient-to-r from-transparent ${tones.line} to-transparent`} />
       <div className="relative z-10 border-b border-white/12 px-5 py-4">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/15 bg-white/[0.08]">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/15 bg-white/[0.08] dark:rounded-none">
               <Icon className={`h-4.5 w-4.5 ${tones.icon}`} strokeWidth={1.8} />
             </div>
             <h3 className="font-black uppercase tracking-[-0.02em] text-white">{title}</h3>
@@ -252,7 +252,7 @@ function QuoteLines({ lines }: { lines: string[] }) {
     <div className="space-y-2.5">
       {lines.map((line, index) => (
         <p key={`${line}-${index}`} className="flex items-start gap-2.5 text-[14px] leading-7 text-white/75">
-          <span className="mt-[1px] font-semibold text-[#5d810e]">&gt;</span>
+          <span className="mt-[1px] font-semibold text-[#86bc25]">&gt;</span>
           <span className="flex-1">{line}</span>
         </p>
       ))}
@@ -279,17 +279,17 @@ function EmptyState() {
     <div className="mx-auto max-w-sm px-5 text-center">
       <div className="relative mx-auto mb-7 h-36 w-36 [perspective:700px]" aria-hidden>
         <motion.div
-          className="absolute inset-3 rounded-[34px] border border-[#cfe0ff] bg-gradient-to-br from-[#86bc25]/12 via-[#5d810e]/8 to-[#86bc25]/12 shadow-[0_0_70px_rgba(134,188,37,0.12)] [transform-style:preserve-3d]"
+          className="absolute inset-3 rounded-[34px] border border-[#86bc25]/40 bg-gradient-to-br from-[#86bc25]/12 via-white/[0.035] to-[#86bc25]/12 shadow-[0_0_70px_rgba(134,188,37,0.12)] [transform-style:preserve-3d]"
           animate={{ rotateX: [58, 68, 58], rotateZ: [-8, 8, -8], y: [0, -5, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute inset-8 rounded-[24px] border border-[#f2c8b5] bg-white/[0.08] [transform-style:preserve-3d]"
+          className="absolute inset-8 rounded-[24px] border border-white/20 bg-white/[0.08] [transform-style:preserve-3d]"
           animate={{ rotateY: [0, 180, 360], rotateX: [20, -20, 20] }}
           transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
         />
         <div className="absolute inset-0 flex items-center justify-center">
-          <Sparkles className="h-7 w-7 text-white/75/80" strokeWidth={1.5} />
+          <Sparkles className="h-7 w-7 text-white/75" strokeWidth={1.5} />
         </div>
       </div>
       <h3 className="text-lg font-semibold text-white">Your notes will appear here</h3>
@@ -303,7 +303,7 @@ function EmptyState() {
 function ResultsBackdrop() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(247,165,94,0.09),transparent_22%),radial-gradient(circle_at_76%_18%,rgba(134,188,37,0.08),transparent_18%),radial-gradient(circle_at_52%_68%,rgba(155,136,214,0.07),transparent_18%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(134,188,37,0.09),transparent_24%),radial-gradient(circle_at_76%_18%,rgba(255,255,255,0.035),transparent_18%),radial-gradient(circle_at_52%_68%,rgba(93,129,14,0.08),transparent_20%)]" />
     </div>
   );
 }
@@ -313,12 +313,12 @@ function AnalysisLoader() {
     <div className="flex flex-col items-center justify-center px-6 text-center">
       <div className="relative mb-7 h-28 w-28 [perspective:800px]" aria-hidden>
         <motion.div
-          className="absolute inset-0 rounded-[34px] border border-[#d2dffb] bg-gradient-to-br from-[#86bc25]/10 via-[#5d810e]/8 to-[#86bc25]/14 [transform-style:preserve-3d]"
+          className="absolute inset-0 rounded-[34px] border border-[#86bc25]/40 bg-gradient-to-br from-[#86bc25]/10 via-white/[0.035] to-[#86bc25]/14 [transform-style:preserve-3d]"
           animate={{ rotateX: [58, 70, 58], rotateY: [0, 20, 0], y: [0, -8, 0] }}
           transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute inset-[18%] rounded-[26px] border border-[#f2c9b2] bg-white/[0.08] [transform-style:preserve-3d]"
+          className="absolute inset-[18%] rounded-[26px] border border-white/20 bg-white/[0.08] [transform-style:preserve-3d]"
           animate={{ rotateY: [0, 180, 360], rotateX: [20, -20, 20] }}
           transition={{ duration: 6.5, repeat: Infinity, ease: "linear" }}
         />
