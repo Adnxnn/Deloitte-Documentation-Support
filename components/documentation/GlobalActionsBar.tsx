@@ -29,7 +29,7 @@ export function GlobalActionsBar() {
             </Badge>
           ) : (
             <Badge variant="secondary" className="text-[11.5px]">
-              Awaiting output
+              Awaiting notes
             </Badge>
           )}
           <span
@@ -39,7 +39,7 @@ export function GlobalActionsBar() {
             )}
           >
             {output && !isGenerating
-              ? "Work Notes and Resolution Notes generated. Export below."
+              ? "Work Notes generated. Export below."
               : "Paste a transcript and click Analyze Documentation to begin."}
           </span>
         </div>
