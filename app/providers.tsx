@@ -7,7 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 
 function AppShell({ children }: { children: ReactNode }) {
   return (
-    <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-[#f4f4f0] transition-colors duration-300 dark:bg-[#111]">
+    <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-[#f4f4f0] transition-colors duration-300 dark:bg-[#050605]">
       <AppHeader />
       <main className="flex-1">{children}</main>
     </div>
