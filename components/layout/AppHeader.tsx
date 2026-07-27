@@ -2,9 +2,8 @@
 
 import * as React from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Moon, Sun } from "lucide-react";
+import { FileStack, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { DxcLogo } from "@/components/brand/DxcLogo";
 
 export function AppHeader() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -19,26 +18,20 @@ export function AppHeader() {
       initial={{ opacity: 0, y: -16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, ease: "easeOut" }}
-      className="sticky top-0 z-50 border-b border-slate-900/8 bg-[#f5f0ea]/82 backdrop-blur-2xl transition-colors duration-300 dark:border-white/10 dark:bg-[#11141b]/86"
+      className="sticky top-0 z-50 border-b border-black/15 bg-[#f4f4f0]/92 backdrop-blur-2xl transition-colors duration-300 dark:border-white/10 dark:bg-[#111]/92"
     >
       <div className="mx-auto flex h-[76px] w-full max-w-[1680px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         <div className="flex min-w-0 items-center gap-4">
-          <motion.div
-            whileHover={{ y: -1, scale: 1.01 }}
-            transition={{ duration: 0.22 }}
-            className="relative flex h-12 items-center rounded-2xl border border-white/70 bg-white/78 px-4 shadow-[0_14px_34px_-24px_rgba(25,38,67,0.25)] dark:border-white/12 dark:bg-white/[0.07]"
-          >
-            <DxcLogo className="h-8 w-auto" />
-          </motion.div>
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center bg-black text-[#86bc25] dark:bg-[#86bc25] dark:text-black">
+            <FileStack className="h-5 w-5" strokeWidth={2.2} />
+          </div>
 
-          <div className="hidden h-8 w-px bg-gradient-to-b from-transparent via-slate-300 to-transparent dark:via-white/15 sm:block" />
-
-          <div className="min-w-0">
-            <p className="truncate text-sm font-semibold tracking-tight text-slate-900 dark:text-white sm:text-[15px]">
-              AI Interaction Analyzer
+          <div className="min-w-0 border-l border-black/20 pl-4 dark:border-white/20">
+            <p className="truncate text-sm font-bold tracking-[-0.02em] text-black dark:text-white sm:text-base">
+              Deloitte Documentation Support Tool
             </p>
-            <p className="hidden truncate text-[11px] text-slate-500 dark:text-slate-400 sm:block">
-              Premium support documentation workspace
+            <p className="hidden truncate text-[10px] font-semibold uppercase tracking-[0.17em] text-black/45 dark:text-white/50 sm:block">
+              ServiceNow-ready interaction notes
             </p>
           </div>
         </div>
@@ -49,7 +42,7 @@ export function AppHeader() {
           disabled={!mounted}
           aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
           title={isDark ? "Switch to light theme" : "Switch to dark theme"}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/80 bg-[linear-gradient(135deg,rgba(92,143,243,0.14),rgba(247,148,77,0.16),rgba(155,136,214,0.16))] text-slate-700 shadow-[0_10px_26px_-18px_rgba(92,143,243,0.6)] transition hover:scale-105 hover:border-[#d3ccc5] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5c8ff3]/45 disabled:cursor-wait dark:border-white/12 dark:bg-[linear-gradient(135deg,rgba(92,143,243,0.22),rgba(247,148,77,0.18),rgba(155,136,214,0.2))] dark:text-white"
+          className="flex h-10 w-10 items-center justify-center border border-black/20 bg-white/60 text-black transition hover:-translate-y-0.5 hover:bg-[#86bc25] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#86bc25] disabled:cursor-wait dark:border-white/15 dark:bg-white/[0.06] dark:text-white"
         >
           <AnimatePresence mode="wait" initial={false}>
             <motion.span

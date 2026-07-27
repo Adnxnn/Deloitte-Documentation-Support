@@ -78,7 +78,7 @@ export function PlaceholderPage({
           <CardContent className="relative grid gap-6 md:grid-cols-5">
             <div className="md:col-span-3 space-y-4 text-sm text-muted-foreground">
               <p className="rounded-2xl border border-border/70 bg-card/70 p-4 text-foreground/90">
-                <span className="mr-1.5 inline-flex items-center rounded-lg bg-dxc-gradient-soft px-2 py-0.5 text-xs font-semibold ring-1 ring-border/60">
+                <span className="mr-1.5 inline-flex items-center rounded-lg bg-deloitte-gradient-soft px-2 py-0.5 text-xs font-semibold ring-1 ring-border/60">
                   Phased Rollout
                 </span>
                 {hint}
@@ -103,9 +103,9 @@ export function PlaceholderPage({
                 <motion.span
                   animate={{ rotate: 360 }}
                   transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-0 rounded-3xl bg-dxc-gradient opacity-15 blur"
+                  className="absolute inset-0 rounded-3xl bg-deloitte-gradient opacity-15 blur"
                 />
-                <Hammer className="relative h-16 w-16 text-gradient-dxc" />
+                <Hammer className="relative h-16 w-16 text-gradient-deloitte" />
               </div>
             </div>
           </CardContent>

@@ -19,7 +19,7 @@ const responseSchema = {
         tsPerformed: {
           type: "array",
           description:
-            "Chronological troubleshooting performed by the DXC Agent or explicitly instructed by the Agent, with one concise action per item.",
+            "Concise professional ServiceNow bullets covering every distinct request, confirmed context, questions and answers, analyst action, user action, advice, Zoom or remote-support activity, exact URL with purpose, request or form submitted, escalation, timeframe, outcome, and pending action with owner. Keep separate issues distinct and preserve chronology.",
           items: { type: "string" },
         },
         output: {
@@ -40,17 +40,24 @@ const responseSchema = {
 } as const;
 
 const systemInstruction = [
-  "You are a Senior DXC IT Service Desk Analyst creating ServiceNow Work Notes from complete support interactions.",
-  "The input can be a long interactive conversation containing User messages, DXC Analyst messages, timestamps, names, automated system messages, greetings, clarifying questions, repeated explanations, hold messages, acknowledgements, and closing statements.",
+  "You create accurate, concise ServiceNow notes from complete support interactions.",
+  "The input can be a long interactive conversation containing User messages, Support Analyst messages, timestamps, names, automated system messages, greetings, clarifying questions, repeated explanations, hold messages, acknowledgements, and closing statements.",
   "Do not summarize or retell the conversation. Analyze the dialogue and extract only the technical documentation required by the JSON schema.",
-  "Identify the supported person as the User and DXC support personnel as the Agent by using speaker labels, message order, questions, answers, and technical context.",
+  "Identify the supported person as the User and support personnel as the Agent by using speaker labels, message order, questions, answers, and technical context.",
   "A User statement is evidence of the issue, symptoms, business impact, actions completed, and final confirmation. An Agent statement is evidence of investigation, checks, troubleshooting performed, instructions provided, escalation, and status handling.",
   "Do not confuse a User's description of the problem with an Agent troubleshooting action.",
+  "Capture every distinct request or issue without combining unrelated issues.",
+  "Capture relevant context, exact error messages, business impact, important questions asked, and information confirmed.",
+  "Capture actions actually performed by the Agent and by the User, guidance or advice provided, and actions only planned or pending. State the actor and status clearly.",
+  "Capture Zoom, screen-sharing, remote-support activity, submitted requests, tickets, forms, escalations, teams, response timeframes, SLAs, expected next steps, and pending ownership whenever supported by the interaction.",
+  "Preserve every URL exactly as written and state its purpose in the same item. Never create or normalize a URL.",
+  "When guidance contains many steps, summarize the purpose and important result without copying every instruction.",
+  "Treat a User confirmation as evidence of completion or outcome, but never infer resolution from a thank-you or closing statement.",
   "Silently ignore greetings, introductions, pleasantries, apologies, empathy statements, acknowledgements, hold notifications, typing indicators, queue messages, bot prompts, surveys, repeated restatements, thank-you messages, goodbye statements, and standard closing scripts.",
   "Use only facts supported by the supplied interaction. Never fabricate troubleshooting, commands, checks, escalations, root causes, findings, approvals, timelines, resolutions, User actions, or final confirmation.",
   "When a cause is not confirmed, describe only the observed symptom or blocker. When a successful result is not confirmed, do not mark the Incident resolved.",
   "Write one Issue entry containing 1 to 3 professional sentences, beginning with the User's technical impact and identifying the affected application, service, device, or account.",
-  "Document the troubleshooting provided by the DXC Agent in chronological order with one action per item.",
+  "Use the TS Performed array as the complete chronological activity record. Include all material issue, action, guidance, source, escalation, timeframe, outcome, and pending-owner bullets required to document the interaction.",
   "Include actions the Agent directly performed and troubleshooting the Agent instructed the User to perform. Phrase instructions accurately as Guided the User to..., Advised the User to..., Instructed the User to..., or Requested the User to....",
   "Do not claim the Agent performed an action completed by the User, and do not claim an instructed User action was completed unless the conversation confirms completion.",
   "Write one Output entry containing 1 to 3 concise professional sentences stating the actual technical result after troubleshooting.",
@@ -174,9 +181,9 @@ function buildInteractionPrompt(transcript: string, repairIssues: string[]): str
     : "";
 
   return [
-    "Analyze the complete raw DXC support interaction below.",
+    "Analyze the complete raw support interaction below.",
     "Determine the User and Agent roles from labels and context.",
-    "Extract the User's technical issue, the DXC Agent's actual troubleshooting, actions, and instructions in chronological order, the real technical outcome, and exactly two concise Resolution Notes sentences.",
+    "Extract every distinct User request, the Support Agent's actual troubleshooting, guidance and actions, User actions, exact links and their purposes, remote-support activity, escalations, timeframes, confirmed outcomes and pending ownership in chronological order, followed by exactly two concise Resolution Notes sentences.",
     "Ignore all non-technical conversation.",
     repairInstruction,
     "",

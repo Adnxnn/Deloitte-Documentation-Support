@@ -7,7 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 
 function AppShell({ children }: { children: ReactNode }) {
   return (
-    <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-[#f3efea] transition-colors duration-300 dark:bg-[#11141b]">
+    <div className="relative flex min-h-screen flex-col overflow-x-hidden bg-[#f4f4f0] transition-colors duration-300 dark:bg-[#111]">
       <AppHeader />
       <main className="flex-1">{children}</main>
     </div>
@@ -21,7 +21,7 @@ export function Providers({ children }: { children: ReactNode }) {
       defaultTheme="light"
       enableSystem={false}
       disableTransitionOnChange={false}
-      storageKey="dxc-documentation-theme"
+      storageKey="deloitte-documentation-theme"
     >
       <TooltipProvider delayDuration={180}>
         <AppShell>{children}</AppShell>

@@ -7,26 +7,26 @@
 @layer base {
   :root {
     --font-inter: "Inter";
-    --background: 36 29% 95%;
-    --foreground: 222 35% 15%;
-    --card: 36 38% 99%;
-    --card-foreground: 222 35% 15%;
-    --popover: 36 38% 99%;
-    --popover-foreground: 222 35% 15%;
-    --primary: 218 86% 66%;
+    --background: 60 15% 95%;
+    --foreground: 0 0% 7%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 7%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 7%;
+    --primary: 82 67% 44%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 32 24% 92%;
-    --secondary-foreground: 222 35% 15%;
-    --muted: 32 20% 92%;
-    --muted-foreground: 218 12% 42%;
-    --accent: 25 87% 64%;
-    --accent-foreground: 222 35% 15%;
+    --secondary: 60 8% 90%;
+    --secondary-foreground: 0 0% 7%;
+    --muted: 60 8% 90%;
+    --muted-foreground: 0 0% 34%;
+    --accent: 82 67% 44%;
+    --accent-foreground: 0 0% 7%;
     --destructive: 0 72% 54%;
     --destructive-foreground: 0 0% 100%;
-    --border: 30 17% 84%;
-    --input: 30 17% 84%;
-    --ring: 218 86% 66%;
-    --radius: 20px;
+    --border: 0 0% 76%;
+    --input: 0 0% 76%;
+    --ring: 82 67% 44%;
+    --radius: 4px;
     --sidebar-background: 36 29% 95%;
     --sidebar-foreground: 222 35% 15%;
     --sidebar-primary: 218 86% 66%;
@@ -114,7 +114,7 @@
     background-color: #fffdfa !important;
     color: #1e293b !important;
     -webkit-text-fill-color: #1e293b !important;
-    caret-color: #5c8ff3;
+    caret-color: #5d810e;
   }
 
   textarea::placeholder {
@@ -143,8 +143,7 @@
   }
 }
 
-/* Dark mode keeps the DXC blue, orange and purple accents.
-   Only cream/white surfaces and typography are converted to charcoal. */
+/* Dark mode preserves the black, white and Deloitte green workbench system. */
 @layer components {
   .dark [class*="bg-[#f3efea]"] {
     background-color: #11141b !important;
@@ -191,29 +190,29 @@
 }
 
 @layer utilities {
-  .dxc-gradient-text {
-    background: linear-gradient(105deg, #62a3ff 0%, #8c7aff 34%, #ff8065 68%, #ffad55 100%);
+  .deloitte-gradient-text {
+    background: linear-gradient(105deg, #5d810e 0%, #86bc25 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
   }
 
-  .bg-dxc-gradient {
-    background-image: linear-gradient(115deg, #3b82f6 0%, #7c5cff 42%, #ff705d 72%, #ff9d45 100%);
+  .bg-deloitte-gradient {
+    background-image: linear-gradient(115deg, #111 0%, #5d810e 55%, #86bc25 100%);
     background-size: 200% 200%;
   }
 
-  .text-gradient-dxc {
-    background: linear-gradient(115deg, #60a5fa 0%, #a78bfa 45%, #fb923c 100%);
+  .text-gradient-deloitte {
+    background: linear-gradient(115deg, #5d810e 0%, #86bc25 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
   }
 
-  .bg-dxc-gradient-soft {
-    background-image: linear-gradient(135deg, rgba(59, 130, 246, 0.16), rgba(124, 92, 255, 0.11), rgba(249, 115, 22, 0.14));
+  .bg-deloitte-gradient-soft {
+    background-image: linear-gradient(135deg, rgba(134, 188, 37, 0.16), rgba(17, 17, 17, 0.06));
   }
 
   .glass-header {

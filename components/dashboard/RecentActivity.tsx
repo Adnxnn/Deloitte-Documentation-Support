@@ -209,10 +209,10 @@ export function RecentActivity() {
               <StatMini label="Fastest doc" value="48s" />
               <StatMini label="Articles" value="6" />
             </div>
-            <div className="rounded-2xl border border-border/70 bg-dxc-gradient-soft p-4">
+            <div className="rounded-2xl border border-border/70 bg-deloitte-gradient-soft p-4">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/80 ring-1 ring-border/60 dark:bg-card">
-                  <UserIcon className="h-5 w-5 text-gradient-dxc" />
+                  <UserIcon className="h-5 w-5 text-gradient-deloitte" />
                 </div>
                 <div>
                   <div className="text-sm font-semibold">
@@ -255,7 +255,7 @@ function WeekBars() {
                 delay: 0.05 * i,
                 ease: "easeOut",
               }}
-              className="w-full rounded-t-lg bg-dxc-gradient"
+              className="w-full rounded-t-lg bg-deloitte-gradient"
               style={{ minHeight: "4px" }}
             />
           </div>

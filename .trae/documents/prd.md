@@ -1,8 +1,8 @@
 ## 1. Product Overview
 
-DXC AI Service Desk Documentation Assistant is an enterprise-grade internal web application for DXC Service Desk Analysts to convert customer conversations (Microsoft Teams chats, call transcripts, ticket summaries, troubleshooting notes, emails) into professional ITSM documentation using AI. The product transforms unstructured conversation data into standardized Work Notes, Resolution Notes, and Root Cause Analysis, dramatically reducing documentation time and improving consistency across ServiceNow incidents.
+Deloitte Documentation Support Tool is an enterprise-grade internal web application for support analysts to convert customer conversations (Microsoft Teams chats, call transcripts, ticket summaries, troubleshooting notes, emails) into professional ITSM documentation using AI. The product transforms unstructured conversation data into standardized Work Notes, Resolution Notes, and Root Cause Analysis, dramatically reducing documentation time and improving consistency across ServiceNow incidents.
 
-- **Target Users**: DXC Service Desk Analysts, L1/L2 Support Agents, Incident Managers
+- **Target Users**: support analysts, L1/L2 Support Agents, Incident Managers
 - **Core Problem**: Agents spend 20-40% of their time writing documentation after resolving incidents; quality and consistency vary widely
 - **Market Value**: 50-70% reduction in documentation time; standardized ITSM output; improved audit compliance; faster knowledge base article creation
 
@@ -30,7 +30,7 @@ DXC AI Service Desk Documentation Assistant is an enterprise-grade internal web 
 | Page Name | Module Name | Feature description |
 |-----------|-------------|---------------------|
 | Dashboard | Hero Section | Large heading, subtitle, quick stat cards, recent activity feed |
-| Dashboard | Navigation Header | Sticky glass-blur header; DXC logo + subtitle; nav links (Dashboard, History, Templates, KB, Analytics, Settings); theme toggle; user profile; AI Ready status |
+| Dashboard | Navigation Header | Sticky glass-blur header; Deloitte Documentation Support Tool wordmark; nav links (Dashboard, History, Templates, KB, Analytics, Settings); theme toggle; user profile; AI Ready status |
 | Documentation Workspace | Input Card | ~350px textarea; title "Chat Transcript / Call Summary"; description; toolbar: Upload TXT, Upload DOCX, Paste Clipboard, Voice Input, Clear, Analyze (primary gradient button) |
 | Documentation Workspace | Generation Progress | Animated 7-step progress indicator with state messages (Reading → Understanding → Extracting → Work Notes → Resolution → RCA → Complete) |
 | Documentation Workspace | Work Notes Card | Structured sections: Issue, TS Performed (bullets), Output, Next Action; actions: Copy, Edit, Regenerate, Download |
@@ -70,15 +70,15 @@ flowchart TD
 ## 4. User Interface Design
 
 ### 4.1 Design Style
-- **Design Language**: Official DXC enterprise aesthetic — inspired by DXC.com, Microsoft Copilot, ServiceNow, Linear, Vercel Dashboard
-- **Light Theme Background**: Warm beige/cream `#FBF8F3` (not pure white, matched to DXC banner reference image), cards `#FFFFFF` with 18-20px rounded corners, subtle drop shadows, soft gray borders
+- **Design Language**: high-contrast Deloitte support workbench aesthetic — informed by enterprise documentation tools, ServiceNow, Linear, and Vercel Dashboard
+- **Light Theme Background**: Warm beige/cream `#FBF8F3` (not pure white, optimized for an internal workbench), cards `#FFFFFF` with 18-20px rounded corners, subtle drop shadows, soft gray borders
 - **Dark Theme Background**: Deep navy `#0A1224`, cards `#131E36`, secondary cards `#1B2946`, text `#FFFFFF`, secondary text `#C8D0E0` — no neon, GitHub Dark + Copilot feel
-- **Accent Gradient**: DXC signature Blue → Orange → Purple gradient (buttons, highlights, logo accents, progress bars)
+- **Accent Gradient**: Deloitte green accent system (buttons, highlights, logo accents, progress bars)
 - **Typography**: Inter font family; large spacious headings (32-48px for hero); comfortable line-height (1.5-1.6); readable body sizes (14-16px)
-- **Button Style**: Primary = full DXC gradient bg, rounded-xl, subtle shadow, hover scale+shadow lift; Secondary = light bg with gray border, hover fill tint
+- **Button Style**: Primary = solid black or Deloitte green background, rounded-xl, subtle shadow, hover scale+shadow lift; Secondary = light bg with gray border, hover fill tint
 - **Icon Style**: Lucide React outline icons, 18-20px stroke, consistent weight, subtle gradient-tinted on active
 - **Layout**: Top navigation with sticky blurred glass; desktop-first generous spacing (padding 24-32px, gaps 24-40px); card-based composition; asymmetric balanced grids on dashboard; two-column workspace (input left, outputs right on wide screens)
-- **Decorative Touches**: Hero area has subtle DXC-style gradient mesh blur (orange → purple → blue) in background corner; soft noise/ grain texture on light theme; thin 1px borders with low opacity
+- **Decorative Touches**: Hero area has subtle structured grid and restrained Deloitte green atmosphere in background corner; soft noise/ grain texture on light theme; thin 1px borders with low opacity
 
 ### 4.2 Page Design Overview
 

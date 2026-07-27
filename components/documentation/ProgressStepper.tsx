@@ -33,8 +33,8 @@ export function ProgressStepper() {
       <div className="mb-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="relative flex h-2.5 w-2.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-dxc-orange opacity-75" />
-            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-dxc-gradient" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-deloitte-green opacity-75" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-deloitte-gradient" />
           </span>
           <div className="text-sm">
             <span className="font-semibold text-foreground">
@@ -75,9 +75,9 @@ export function ProgressStepper() {
                 }}
                 className={`relative flex h-7 w-7 items-center justify-center rounded-full transition-colors ${
                   done
-                    ? "bg-dxc-gradient text-white shadow-sm"
+                    ? "bg-deloitte-gradient text-white shadow-sm"
                     : active
-                    ? "bg-dxc-gradient text-white shadow-md shadow-black/10 ring-4 ring-dxc-gradient/20"
+                    ? "bg-deloitte-gradient text-white shadow-md shadow-black/10 ring-4 ring-deloitte-gradient/20"
                     : "bg-muted text-muted-foreground/70"
                 }`}
               >

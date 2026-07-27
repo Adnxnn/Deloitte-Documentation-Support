@@ -95,27 +95,27 @@ export function InputCard() {
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, ease: "easeOut" }}
-      className="relative isolate overflow-hidden rounded-[30px] border border-white/70 bg-white/62 shadow-[0_26px_80px_-48px_rgba(25,38,67,0.32)] backdrop-blur-2xl"
+      className="relative isolate overflow-hidden border border-black/20 bg-white/78 shadow-[10px_10px_0_rgba(17,17,17,0.08)] backdrop-blur-xl"
       aria-labelledby="transcript-heading"
     >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-[#f39a57] to-transparent"
+        className="pointer-events-none absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-[#86bc25] to-transparent"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-16 top-8 h-48 w-48 rounded-full bg-[#5c8ff3]/12 blur-3xl"
+        className="pointer-events-none absolute -left-16 top-8 h-48 w-48 rounded-full bg-[#86bc25]/12 blur-3xl"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-8 bottom-0 h-52 w-52 rounded-full bg-[#f39a57]/16 blur-3xl"
+        className="pointer-events-none absolute -right-8 bottom-0 h-52 w-52 rounded-full bg-black/8 blur-3xl"
       />
 
       <div className="relative z-10 flex min-h-[640px] flex-col p-5 sm:p-6 lg:p-7">
         <div className="mb-5 flex items-start justify-between gap-4">
           <div className="flex min-w-0 items-center gap-3.5">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/80 bg-white/78 shadow-[0_12px_30px_-22px_rgba(25,38,67,0.28)]">
-              <FileText className="h-5 w-5 text-[#f08e56]" strokeWidth={1.8} />
+              <FileText className="h-5 w-5 text-[#5d810e]" strokeWidth={1.8} />
             </div>
             <div className="min-w-0">
               <h2 id="transcript-heading" className="text-base font-semibold tracking-tight text-slate-900 sm:text-lg">
@@ -148,7 +148,7 @@ export function InputCard() {
             aria-invalid={Boolean(error)}
             aria-describedby={error ? "transcript-error" : "transcript-help"}
             placeholder="Paste the complete chat transcript, call summary, or customer interaction here…"
-            className="h-full min-h-[430px] resize-none rounded-[24px] border border-[#ddd4cb] bg-[#fffdfa]/82 px-5 py-5 text-[15px] leading-7 text-slate-800 shadow-inner shadow-[#f0ebe4] outline-none placeholder:text-slate-400 focus-visible:border-[#5c8ff3]/60 focus-visible:ring-2 focus-visible:ring-[#5c8ff3]/20 disabled:cursor-wait disabled:opacity-65"
+            className="h-full min-h-[430px] resize-none rounded-[24px] border border-[#ddd4cb] bg-[#fffdfa]/82 px-5 py-5 text-[15px] leading-7 text-slate-800 shadow-inner shadow-[#f0ebe4] outline-none placeholder:text-slate-400 focus-visible:border-[#86bc25] focus-visible:ring-2 focus-visible:ring-[#86bc25]/25 disabled:cursor-wait disabled:opacity-65"
             spellCheck={false}
           />
           <div
@@ -184,7 +184,7 @@ export function InputCard() {
               exit={{ opacity: 0, height: 0, y: 8 }}
               className="overflow-hidden"
             >
-              <div className="mt-4 flex items-center gap-4 rounded-2xl border border-[#d8d9ef] bg-[linear-gradient(135deg,rgba(92,143,243,0.08),rgba(247,148,77,0.07),rgba(142,143,226,0.08))] px-4 py-3.5">
+              <div className="mt-4 flex items-center gap-4 rounded-2xl border border-[#d8d9ef] bg-[linear-gradient(135deg,rgba(134,188,37,0.08),rgba(134,188,37,0.07),rgba(93,129,14,0.08))] px-4 py-3.5">
                 <MiniAnalyzerOrb />
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center justify-between gap-3">
@@ -195,7 +195,7 @@ export function InputCard() {
                   </div>
                   <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/70">
                     <motion.div
-                      className="h-full rounded-full bg-gradient-to-r from-[#5c8ff3] via-[#9b88d6] to-[#f39a57]"
+                      className="h-full rounded-full bg-gradient-to-r from-black via-[#5d810e] to-[#86bc25]"
                       animate={{ width: `${(Math.min(currentStep || 1, 6) / 6) * 100}%` }}
                       transition={{ duration: 0.45, ease: "easeOut" }}
                     />
@@ -212,7 +212,7 @@ export function InputCard() {
             variant="ghost"
             onClick={clearTranscript}
             disabled={isGenerating || (!transcript && !error)}
-            className="h-12 justify-center rounded-2xl border border-[#ddd4cb] bg-white/72 px-5 text-slate-700 hover:bg-white hover:text-slate-900 focus-visible:ring-2 focus-visible:ring-[#f39a57]/40 sm:justify-start"
+            className="h-12 justify-center rounded-2xl border border-[#ddd4cb] bg-white/72 px-5 text-slate-700 hover:bg-white hover:text-slate-900 focus-visible:ring-2 focus-visible:ring-[#86bc25]/40 sm:justify-start"
           >
             <Trash2 className="h-4 w-4" />
             Clear
@@ -225,7 +225,7 @@ export function InputCard() {
           >
             <motion.div
               aria-hidden
-              className="pointer-events-none absolute -inset-1 rounded-[20px] bg-gradient-to-r from-[#5c8ff3] via-[#9b88d6] to-[#f39a57] blur-lg"
+              className="pointer-events-none absolute -inset-1 rounded-[20px] bg-gradient-to-r from-black via-[#5d810e] to-[#86bc25] blur-lg"
               animate={
                 isGenerating
                   ? { opacity: [0.22, 0.45, 0.22], scale: [0.98, 1.03, 0.98] }
@@ -237,7 +237,7 @@ export function InputCard() {
               type="button"
               onClick={() => void analyzeInteraction()}
               disabled={isGenerating || isOverLimit}
-              className="relative h-12 w-full rounded-2xl border border-white/80 bg-[linear-gradient(135deg,#5c8ff3_0%,#8e8fe2_42%,#f39a57_100%)] px-6 font-semibold text-white shadow-[0_14px_38px_-18px_rgba(92,143,243,0.55)] hover:brightness-105 focus-visible:ring-2 focus-visible:ring-[#f39a57]/60 sm:w-auto"
+              className="relative h-12 w-full rounded-2xl border border-white/80 bg-[#86bc25] px-6 font-semibold text-white shadow-[0_14px_38px_-18px_rgba(93,129,14,0.55)] hover:brightness-105 focus-visible:ring-2 focus-visible:ring-[#86bc25]/60 sm:w-auto"
             >
               {isGenerating ? (
                 <MiniSpinner />
@@ -271,12 +271,12 @@ function MiniAnalyzerOrb() {
   return (
     <div className="relative flex h-10 w-10 shrink-0 items-center justify-center [perspective:400px]" aria-hidden>
       <motion.span
-        className="absolute h-9 w-9 rounded-full border border-[#5c8ff3]/40"
+        className="absolute h-9 w-9 rounded-full border border-[#86bc25]/40"
         animate={{ rotateX: [0, 70, 0], rotateY: [0, 180, 360] }}
         transition={{ duration: 3.4, repeat: Infinity, ease: "linear" }}
       />
       <motion.span
-        className="absolute h-7 w-7 rounded-full border border-[#f39a57]/50"
+        className="absolute h-7 w-7 rounded-full border border-[#86bc25]/50"
         animate={{ rotateX: [70, 0, 70], rotateZ: [0, -180, -360] }}
         transition={{ duration: 2.8, repeat: Infinity, ease: "linear" }}
       />

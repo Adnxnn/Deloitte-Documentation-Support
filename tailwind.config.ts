@@ -62,10 +62,10 @@ const config: Config = {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        dxc: {
-          blue: "#2E6BE6",
-          orange: "#FF7A1A",
-          purple: "#8B4EE6",
+        deloitte: {
+          green: "#86BC25",
+          lime: "#5D810E",
+          ink: "#111111",
           light: "#FBF8F3",
           dark: "#0A1224",
           darkCard: "#131E36",
@@ -115,12 +115,12 @@ const config: Config = {
         shimmer: "shimmer 2s linear infinite",
       },
       backgroundImage: {
-        "dxc-gradient":
-          "linear-gradient(135deg, #2E6BE6 0%, #FF7A1A 50%, #8B4EE6 100%)",
-        "dxc-gradient-soft":
-          "linear-gradient(135deg, rgba(46,107,230,0.1) 0%, rgba(255,122,26,0.1) 50%, rgba(139,78,230,0.1) 100%)",
+        "deloitte-gradient":
+          "linear-gradient(135deg, #86BC25 0%, #5D810E 50%, #111111 100%)",
+        "deloitte-gradient-soft":
+          "linear-gradient(135deg, rgba(134,188,37,0.1) 0%, rgba(93,129,14,0.1) 50%, rgba(17,17,17,0.1) 100%)",
         "mesh-blur":
-          "radial-gradient(circle at 20% 20%, rgba(255,122,26,0.22) 0%, transparent 45%), radial-gradient(circle at 80% 10%, rgba(46,107,230,0.25) 0%, transparent 45%), radial-gradient(circle at 60% 80%, rgba(139,78,230,0.22) 0%, transparent 45%)",
+          "radial-gradient(circle at 20% 20%, rgba(93,129,14,0.22) 0%, transparent 45%), radial-gradient(circle at 80% 10%, rgba(134,188,37,0.25) 0%, transparent 45%), radial-gradient(circle at 60% 80%, rgba(17,17,17,0.22) 0%, transparent 45%)",
       },
     },
   },

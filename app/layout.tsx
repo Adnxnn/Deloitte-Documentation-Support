@@ -4,19 +4,19 @@ import "./globals.css";
 import { Providers } from "./providers";
 
 export const metadata: Metadata = {
-  title: "DXC AI Interaction Analyzer",
+  title: "Deloitte Documentation Support Tool",
   description:
     "Convert customer support interactions into grounded Work Notes and concise Resolution Notes for ITSM workflows.",
 };
 
 export const viewport = {
-  themeColor: "#070A11",
-  colorScheme: "dark",
+  themeColor: "#f4f4f0",
+  colorScheme: "light dark",
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className="dark scroll-smooth">
+    <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

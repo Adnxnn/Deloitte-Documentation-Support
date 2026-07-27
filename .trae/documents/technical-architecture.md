@@ -45,8 +45,8 @@ graph TD
 ## 2. Technology Description
 
 - **Frontend Framework**: Next.js 15 with App Router (App/ directory), React 19, TypeScript strict mode
-- **Styling**: Tailwind CSS v3 + CSS variables for theming (Light/Dark/System), custom DXC color palette
-- **UI Component Library**: shadcn/ui (manually installed via CLI, Radix primitives), themed to DXC design language
+- **Styling**: Tailwind CSS v3 + CSS variables for theming (Light/Dark/System), custom Deloitte green, black and neutral palette
+- **UI Component Library**: shadcn/ui (manually installed via CLI, Radix primitives), themed to the Deloitte documentation workbench
 - **Animations**: Framer Motion (page transitions, stepper progress, staggered card reveals, micro-interactions)
 - **Icons**: Lucide React (outline style, consistent with enterprise clean look)
 - **State Management**: Zustand for client-side UI state (theme, workspace inputs, generation state)

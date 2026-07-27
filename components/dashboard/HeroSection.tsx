@@ -40,17 +40,17 @@ export function HeroSection() {
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/80 px-3 py-1.5 text-xs font-medium shadow-sm backdrop-blur">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-dxc-orange opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-dxc-gradient" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-deloitte-green opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-deloitte-gradient" />
               </span>
-              Powered by GPT-5.5 · DXC Enterprise AI Platform
+              Powered by GPT-5.5 · Deloitte Documentation Support Tool
             </div>
 
             <h1 className="text-4xl font-bold leading-[1.05] tracking-tight md:text-5xl lg:text-6xl">
               <span className="block text-foreground">
                 AI Service Desk
               </span>
-              <span className="block text-gradient-dxc pb-2 sm:pb-3">
+              <span className="block text-gradient-deloitte pb-2 sm:pb-3">
                 Documentation Assistant
               </span>
             </h1>
@@ -103,7 +103,7 @@ export function HeroSection() {
                   className="relative rounded-2xl border border-border/60 bg-card/70 p-3.5 shadow-sm backdrop-blur"
                 >
                   <div className="flex items-baseline gap-1.5">
-                    <Clock className="h-3.5 w-3.5 text-dxc-blue" />
+                    <Clock className="h-3.5 w-3.5 text-deloitte-green" />
                     <span className="text-lg font-bold tracking-tight md:text-xl">
                       {s.value}
                     </span>
@@ -182,7 +182,7 @@ function HeroStatCards() {
       >
         <div className="flex items-center justify-between border-b border-border/60 px-5 py-3">
           <div className="flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-dxc-gradient" />
+            <span className="h-2 w-2 rounded-full bg-deloitte-gradient" />
             <span className="text-sm font-semibold">Latest Output</span>
           </div>
           <span className="text-[11px] font-medium text-muted-foreground">
