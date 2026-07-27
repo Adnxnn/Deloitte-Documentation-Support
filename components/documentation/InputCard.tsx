@@ -95,7 +95,7 @@ export function InputCard() {
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, ease: "easeOut" }}
-      className="relative isolate overflow-hidden border border-black/20 bg-white/78 shadow-[10px_10px_0_rgba(17,17,17,0.08)] backdrop-blur-xl"
+      className="relative isolate overflow-hidden border border-black bg-[#f7f8f4] shadow-[8px_8px_0_rgba(17,17,17,0.14)]"
       aria-labelledby="transcript-heading"
     >
       <div
@@ -111,22 +111,22 @@ export function InputCard() {
         className="pointer-events-none absolute -right-8 bottom-0 h-52 w-52 rounded-full bg-black/8 blur-3xl"
       />
 
-      <div className="relative z-10 flex min-h-[640px] flex-col p-5 sm:p-6 lg:p-7">
-        <div className="mb-5 flex items-start justify-between gap-4">
+      <div className="relative z-10 flex min-h-[640px] flex-col p-4 sm:p-5 lg:p-6">
+        <div className="mb-4 flex items-start justify-between gap-4 border-b border-black pb-4">
           <div className="flex min-w-0 items-center gap-3.5">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/80 bg-white/78 shadow-[0_12px_30px_-22px_rgba(25,38,67,0.28)]">
-              <FileText className="h-5 w-5 text-[#5d810e]" strokeWidth={1.8} />
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-black bg-[#86bc25]">
+              <FileText className="h-5 w-5 text-black" strokeWidth={2.2} />
             </div>
             <div className="min-w-0">
-              <h2 id="transcript-heading" className="text-base font-semibold tracking-tight text-slate-900 sm:text-lg">
-                Interaction Transcript
+              <h2 id="transcript-heading" className="text-base font-black uppercase tracking-[-0.025em] text-slate-900 sm:text-lg">
+                Source / Interaction
               </h2>
-              <p className="mt-1 text-xs leading-5 text-slate-500 sm:text-sm">
+              <p className="mt-1 font-mono text-[10px] uppercase leading-5 tracking-[0.08em] text-slate-500">
                 Include the complete support conversation for the most accurate result.
               </p>
             </div>
           </div>
-          <span className="rounded-full border border-[#ddd4cb] bg-[#fbf8f4] px-3 py-1.5 text-[11px] font-medium text-slate-500">
+          <span className="border border-black bg-white px-3 py-1.5 font-mono text-[10px] font-bold text-slate-600">
             {charCount.toLocaleString()} / {MAX_TRANSCRIPT_LENGTH.toLocaleString()}
           </span>
         </div>
@@ -148,7 +148,7 @@ export function InputCard() {
             aria-invalid={Boolean(error)}
             aria-describedby={error ? "transcript-error" : "transcript-help"}
             placeholder="Paste the complete chat transcript, call summary, or customer interaction here…"
-            className="h-full min-h-[430px] resize-none rounded-[24px] border border-[#ddd4cb] bg-[#fffdfa]/82 px-5 py-5 text-[15px] leading-7 text-slate-800 shadow-inner shadow-[#f0ebe4] outline-none placeholder:text-slate-400 focus-visible:border-[#86bc25] focus-visible:ring-2 focus-visible:ring-[#86bc25]/25 disabled:cursor-wait disabled:opacity-65"
+            className="h-full min-h-[430px] resize-none rounded-none border border-black bg-[#fffdfa]/82 px-5 py-5 text-[15px] leading-7 text-slate-800 shadow-[inset_5px_5px_0_rgba(17,17,17,0.035)] outline-none placeholder:text-slate-400 focus-visible:border-[#5d810e] focus-visible:ring-2 focus-visible:ring-[#86bc25]/40 disabled:cursor-wait disabled:opacity-65"
             spellCheck={false}
           />
           <div
@@ -212,7 +212,7 @@ export function InputCard() {
             variant="ghost"
             onClick={clearTranscript}
             disabled={isGenerating || (!transcript && !error)}
-            className="h-12 justify-center rounded-2xl border border-[#ddd4cb] bg-white/72 px-5 text-slate-700 hover:bg-white hover:text-slate-900 focus-visible:ring-2 focus-visible:ring-[#86bc25]/40 sm:justify-start"
+            className="h-12 justify-center rounded-none border border-black bg-white/72 px-5 font-bold uppercase text-slate-700 hover:bg-black hover:text-white focus-visible:ring-2 focus-visible:ring-[#86bc25]/40 sm:justify-start"
           >
             <Trash2 className="h-4 w-4" />
             Clear
@@ -237,7 +237,7 @@ export function InputCard() {
               type="button"
               onClick={() => void analyzeInteraction()}
               disabled={isGenerating || isOverLimit}
-              className="relative h-12 w-full rounded-2xl border border-white/80 bg-[#86bc25] px-6 font-semibold text-white shadow-[0_14px_38px_-18px_rgba(93,129,14,0.55)] hover:brightness-105 focus-visible:ring-2 focus-visible:ring-[#86bc25]/60 sm:w-auto"
+              className="relative h-12 w-full rounded-none border border-black bg-[#86bc25] px-6 font-black uppercase text-black shadow-[5px_5px_0_#111] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:brightness-105 focus-visible:ring-2 focus-visible:ring-[#86bc25]/60 sm:w-auto"
             >
               {isGenerating ? (
                 <MiniSpinner />
