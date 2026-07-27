@@ -6,7 +6,6 @@ import {
   Check,
   ClipboardCheck,
   Copy,
-  FileCheck2,
   FileText,
   Layers3,
   Sparkles,
@@ -38,22 +37,11 @@ function workNotesText(output: DocumentationOutput): string {
     "",
     "TS Performed:",
     ...output.workNotes.tsPerformed.map((item) => `> ${normalize(item)}`),
-    "",
-    "Output:",
-    `> ${cleanEntry(output.workNotes.output)}`,
-  ].join("\n");
-}
-
-function resolutionText(output: DocumentationOutput): string {
-  return [
-    "RESOLUTION NOTES",
-    "",
-    `> ${cleanEntry(output.resolutionNotes)}`,
   ].join("\n");
 }
 
 function allNotesText(output: DocumentationOutput): string {
-  return `${workNotesText(output)}\n\n${resolutionText(output)}`;
+  return workNotesText(output);
 }
 
 async function writeClipboard(text: string) {
@@ -76,17 +64,12 @@ async function writeClipboard(text: string) {
 export function OutputCards() {
   const output = useAppStore((state) => state.output);
   const isGenerating = useAppStore((state) => state.isGenerating);
-  const [copied, setCopied] = React.useState<"work" | "resolution" | "all" | null>(null);
+  const [copied, setCopied] = React.useState<"work" | "all" | null>(null);
 
   const copy = React.useCallback(
-    async (target: "work" | "resolution" | "all") => {
+    async (target: "work" | "all") => {
       if (!output) return;
-      const text =
-        target === "work"
-          ? workNotesText(output)
-          : target === "resolution"
-            ? resolutionText(output)
-            : allNotesText(output);
+      const text = target === "work" ? workNotesText(output) : allNotesText(output);
 
       try {
         await writeClipboard(text);
@@ -118,7 +101,7 @@ export function OutputCards() {
               </div>
               <div>
                 <h2 id="results-heading" className="text-base font-black uppercase tracking-[-0.025em] text-white sm:text-lg">
-                  Output / Generated Notes
+                  Generated Work Notes
                 </h2>
                 <p className="mt-0.5 text-xs text-white/50">Professional, transcript-grounded ITSM documentation.</p>
               </div>
@@ -174,27 +157,6 @@ export function OutputCards() {
 
                 <AlignedSection label="TS Performed">
                   <QuoteLines lines={output.workNotes.tsPerformed.map(normalize)} />
-                </AlignedSection>
-
-                <AlignedSection label="Output">
-                  <QuoteLines lines={[cleanEntry(output.workNotes.output)]} />
-                </AlignedSection>
-              </NotesCard>
-
-              <NotesCard
-                title="Resolution Notes"
-                icon={FileCheck2}
-                accent="orange"
-                action={
-                  <CopyButton
-                    label="Copy Resolution Notes"
-                    copied={copied === "resolution"}
-                    onClick={() => void copy("resolution")}
-                  />
-                }
-              >
-                <AlignedSection label="Resolution">
-                  <QuoteLines lines={[cleanEntry(output.resolutionNotes)]} />
                 </AlignedSection>
               </NotesCard>
             </motion.div>
@@ -332,7 +294,7 @@ function EmptyState() {
       </div>
       <h3 className="text-lg font-semibold text-white">Your notes will appear here</h3>
       <p className="mt-2 text-sm leading-6 text-white/50">
-        Paste a transcript or summary, then analyze the interaction to generate Work Notes and Resolution Notes.
+        Paste a transcript or summary, then analyze the interaction to generate concise Work Notes.
       </p>
     </div>
   );
@@ -363,7 +325,7 @@ function AnalysisLoader() {
       </div>
       <h3 className="text-lg font-semibold text-white">Analyzing interaction</h3>
       <p className="mt-2 max-w-md text-sm leading-6 text-white/50">
-        Creating transcript-grounded work notes and a concise resolution summary.
+        Creating transcript-grounded Work Notes.
       </p>
     </div>
   );
