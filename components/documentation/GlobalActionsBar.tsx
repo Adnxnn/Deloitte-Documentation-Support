@@ -18,7 +18,7 @@ export function GlobalActionsBar() {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.1 }}
-      className="fixed bottom-0 inset-x-0 z-30 border-t border-border/60 bg-background/95 backdrop-blur-xl shadow-[0_-8px_32px_-24px_rgba(15,23,42,0.35)]"
+      className="fixed inset-x-0 bottom-0 z-30 border-t border-border/60 bg-background/95 shadow-[0_-8px_32px_-24px_rgba(15,23,42,0.35)] backdrop-blur-xl dark:border-[#86bc25]/25 dark:bg-[#050605]/95 dark:shadow-[0_-12px_36px_-18px_rgba(0,0,0,0.9)]"
     >
       <div className="mx-auto flex h-20 w-full max-w-[1600px] items-center justify-between gap-4 px-4 md:h-20 md:px-6">
         <div className="flex min-w-0 items-center gap-3">
