@@ -104,21 +104,21 @@ export function OutputCards() {
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.06, ease: "easeOut" }}
-      className="relative isolate min-h-[640px] overflow-hidden border border-black/20 bg-[#111] text-white shadow-[10px_10px_0_rgba(134,188,37,0.28)]"
+      className="relative isolate min-h-[640px] overflow-hidden border border-black bg-[#111] text-white shadow-[8px_8px_0_#86bc25]"
       aria-labelledby="results-heading"
     >
       <ResultsBackdrop />
 
       <div className="relative z-10 flex min-h-[640px] flex-col p-5 sm:p-6 lg:p-7">
-        <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div className="mb-5 flex flex-col gap-4 border-b border-white/25 pb-5 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <div className="flex items-center gap-2.5">
               <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/15 bg-white/[0.08] shadow-[0_12px_30px_-22px_rgba(25,38,67,0.28)]">
                 <Layers3 className="h-4.5 w-4.5 text-[#86bc25]" strokeWidth={1.8} />
               </div>
               <div>
-                <h2 id="results-heading" className="text-base font-semibold tracking-tight text-white sm:text-lg">
-                  Generated Notes
+                <h2 id="results-heading" className="text-base font-black uppercase tracking-[-0.025em] text-white sm:text-lg">
+                  Output / Generated Notes
                 </h2>
                 <p className="mt-0.5 text-xs text-white/50">Professional, transcript-grounded ITSM documentation.</p>
               </div>
@@ -129,7 +129,7 @@ export function OutputCards() {
             type="button"
             onClick={() => void copy("all")}
             disabled={!output || isGenerating}
-            className="h-11 rounded-2xl border border-white/15 bg-[#86bc25] px-5 font-semibold text-white shadow-[0_14px_38px_-18px_rgba(93,129,14,0.55)] hover:brightness-105 focus-visible:ring-2 focus-visible:ring-[#86bc25]/60 disabled:opacity-35"
+            className="h-11 rounded-none border border-[#86bc25] bg-[#86bc25] px-5 font-black uppercase text-black shadow-[4px_4px_0_rgba(255,255,255,0.18)] hover:-translate-y-0.5 hover:brightness-105 focus-visible:ring-2 focus-visible:ring-[#86bc25]/60 disabled:opacity-35"
           >
             {copied === "all" ? <Check className="h-4 w-4" /> : <ClipboardCheck className="h-4 w-4" />}
             {copied === "all" ? "Copied successfully" : "Copy All Notes"}
@@ -256,7 +256,7 @@ function NotesCard({ title, icon: Icon, accent, action, children }: NotesCardPro
     <motion.article
       whileHover={{ y: -2 }}
       transition={{ duration: 0.25 }}
-      className="group relative overflow-hidden rounded-[24px] border border-white/15 bg-white/[0.06] shadow-[0_18px_54px_-34px_rgba(25,38,67,0.26)]"
+      className="group relative overflow-hidden border border-white/25 bg-white/[0.055] shadow-[5px_5px_0_rgba(134,188,37,0.12)]"
     >
       <div aria-hidden className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${tones.glow}`} />
       <div aria-hidden className={`pointer-events-none absolute inset-x-12 top-0 h-px bg-gradient-to-r from-transparent ${tones.line} to-transparent`} />
@@ -266,7 +266,7 @@ function NotesCard({ title, icon: Icon, accent, action, children }: NotesCardPro
             <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/15 bg-white/[0.08]">
               <Icon className={`h-4.5 w-4.5 ${tones.icon}`} strokeWidth={1.8} />
             </div>
-            <h3 className="font-semibold tracking-tight text-white">{title}</h3>
+            <h3 className="font-black uppercase tracking-[-0.02em] text-white">{title}</h3>
           </div>
           {action}
         </div>
@@ -304,7 +304,7 @@ function CopyButton({ label, copied, onClick }: { label: string; copied: boolean
       type="button"
       onClick={onClick}
       aria-label={label}
-      className="inline-flex h-9 items-center gap-2 rounded-xl border border-white/15 bg-white/[0.08] px-3 text-xs font-medium text-white/70 transition hover:border-[#cfc4bb] hover:bg-[#86bc25] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#86bc25]/35"
+      className="inline-flex h-9 items-center gap-2 border border-white/20 bg-white/[0.08] px-3 font-mono text-[10px] font-bold uppercase text-white/70 transition hover:border-[#86bc25] hover:bg-[#86bc25] hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#86bc25]/35"
     >
       {copied ? <Check className="h-3.5 w-3.5 text-emerald-500" /> : <Copy className="h-3.5 w-3.5" />}
       <span className="hidden sm:inline">{copied ? "Copied" : "Copy"}</span>
