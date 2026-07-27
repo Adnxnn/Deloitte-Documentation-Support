@@ -19,7 +19,7 @@ const responseSchema = {
         tsPerformed: {
           type: "array",
           description:
-            "Concise professional ServiceNow bullets covering every distinct request, confirmed context, questions and answers, analyst action, user action, advice, Zoom or remote-support activity, exact URL with purpose, request or form submitted, escalation, timeframe, outcome, and pending action with owner. Keep separate issues distinct and preserve chronology.",
+            "Concise professional ServiceNow bullets written from the note author's first-person point of view. Cover every distinct request, confirmed context, question and answer, action I performed, user action, advice I provided, Zoom or remote-support activity, exact URL with purpose, request or form submitted, escalation, timeframe, outcome, and pending action with owner. Keep separate issues distinct and preserve chronology.",
           items: { type: "string" },
         },
       },
@@ -33,12 +33,12 @@ const systemInstruction = [
   "You create accurate, concise ServiceNow notes from complete support interactions.",
   "The input can be a long interactive conversation containing User messages, Support Analyst messages, timestamps, names, automated system messages, greetings, clarifying questions, repeated explanations, hold messages, acknowledgements, and closing statements.",
   "Do not summarize or retell the conversation. Analyze the dialogue and extract only the technical documentation required by the JSON schema.",
-  "Identify the supported person as the User and support personnel as the Agent by using speaker labels, message order, questions, answers, and technical context.",
-  "A User statement is evidence of the issue, symptoms, business impact, actions completed, and final confirmation. An Agent statement is evidence of investigation, checks, troubleshooting performed, instructions provided, escalation, and status handling.",
-  "Do not confuse a User's description of the problem with an Agent troubleshooting action.",
+  "Identify the supported person as the User and the support professional as the note author by using speaker labels, message order, questions, answers, and technical context. The source transcript may label the note author as Agent, Analyst, Technician, Support, or Engineer; treat those labels only as input evidence and never reproduce them in the Work Notes.",
+  "A User statement is evidence of the issue, symptoms, business impact, actions completed, and final confirmation. A note-author statement is evidence of my investigation, checks, troubleshooting, guidance, escalation, and status handling.",
+  "Do not confuse a User's description of the problem with an action I performed.",
   "Capture every distinct request or issue without combining unrelated issues.",
   "Capture relevant context, exact error messages, business impact, important questions asked, and information confirmed.",
-  "Capture actions actually performed by the Agent and by the User, guidance or advice provided, and actions only planned or pending. State the actor and status clearly.",
+  "Capture actions I actually performed, actions completed by the User, guidance or advice I provided, and actions only planned or pending. State ownership and status clearly.",
   "Capture Zoom, screen-sharing, remote-support activity, submitted requests, tickets, forms, escalations, teams, response timeframes, SLAs, expected next steps, and pending ownership whenever supported by the interaction.",
   "Preserve every URL exactly as written and state its purpose in the same item. Never create or normalize a URL.",
   "When guidance contains many steps, summarize the purpose and important result without copying every instruction.",
@@ -48,15 +48,20 @@ const systemInstruction = [
   "When a cause is not confirmed, describe only the observed symptom or blocker. When a successful result is not confirmed, do not mark the Incident resolved.",
   "Write one Issue entry containing 1 to 3 professional sentences, beginning with the User's technical impact and identifying the affected application, service, device, or account.",
   "Use the TS Performed array as the complete chronological activity record. Include all material issue, action, guidance, source, escalation, timeframe, outcome, and pending-owner bullets required to document the interaction.",
-  "Include actions the Agent directly performed and troubleshooting the Agent instructed the User to perform. Phrase instructions accurately as Guided the User to..., Advised the User to..., Instructed the User to..., or Requested the User to....",
-  "Do not claim the Agent performed an action completed by the User, and do not claim an instructed User action was completed unless the conversation confirms completion.",
-  "Use User, Agent, Incident, Ticket, or Case where applicable. Do not use Customer, Caller, Client, I, We, You, He, She, or They in the generated documentation.",
+  "Write every action, communication, or guidance completed by the note author in first person using I. Use natural wording such as I checked..., I informed the User..., I assisted the User..., I guided the User to..., I advised the User to..., I shared the ServiceNow link for [purpose] and advised the User to follow the provided steps, I submitted..., or I escalated....",
+  "Never describe the note author as the Agent, Analyst, Technician, Support Engineer, Engineer, He, She, They, or We. Do not use passive wording such as Agent provided, guidance was provided, or the case was escalated when the interaction confirms that I completed the action.",
+  "Keep User actions attributed to the User, for example User confirmed... or User restarted.... Record my guidance as I advised the User... or I guided the User.... Do not claim I performed an action completed by the User, and do not claim an instructed User action was completed unless the conversation confirms completion.",
+  "Use User, Incident, Ticket, or Case where applicable. Do not use Customer, Caller, Client, You, He, She, They, or We in the generated documentation.",
   "Return only workNotes.issue and workNotes.tsPerformed. Do not return Output, Resolution Notes, headings, markdown, bullet characters, Summary, RCA, Next Action, recommendations, or any other section.",
-  "Before returning, verify that the Issue belongs to the supported User, every TS item is supported by the interaction, conversational filler is absent, and nothing was invented.",
+  "Before returning, verify that the Issue belongs to the supported User, every note-author action uses first-person I wording, no Work Note refers to the note author as an Agent or other third-person support role, every TS item is supported by the interaction, conversational filler is absent, and nothing was invented.",
 ].join(" ");
 
 const CONVERSATIONAL_FILLER =
   /\b(?:hello|good morning|good afternoon|good evening|how are you|thank you for contacting|is there anything else|have a good day|you'?re welcome)\b/i;
+const THIRD_PERSON_SUPPORT_ACTOR =
+  /\b(?:the\s+)?(?:support\s+)?(?:agent|analyst|technician|support\s+engineer|engineer)\b/i;
+const SUPPORT_ACTION_WITHOUT_FIRST_PERSON =
+  /^(?:checked|verified|validated|reviewed|investigated|tested|opened|cleared|removed|reset|restarted|recreated|updated|installed|configured|enabled|disabled|unlocked|changed|connected|reconnected|escalated|created|confirmed|performed|informed|helped|assisted|guided|advised|instructed|provided|sent|explained|submitted|requested|kept|shared)\b/i;
 
 type GeminiResult = {
   output: AnalyzerOutput;
@@ -113,6 +118,22 @@ function validationIssues(output: AnalyzerOutput): string[] {
     issues.push("Conversational greetings or closing filler must be removed");
   }
 
+  if (THIRD_PERSON_SUPPORT_ACTOR.test(allText)) {
+    issues.push(
+      "Never refer to the note author as Agent, Analyst, Technician, Support Engineer, or Engineer; rewrite the note author's actions in first person using I",
+    );
+  }
+
+  if (
+    output.workNotes.tsPerformed.some((item) =>
+      SUPPORT_ACTION_WITHOUT_FIRST_PERSON.test(cleanEntry(item)),
+    )
+  ) {
+    issues.push(
+      "Every action completed by the note author must begin with first-person I wording",
+    );
+  }
+
   return issues;
 }
 
@@ -158,8 +179,9 @@ function buildInteractionPrompt(transcript: string, repairIssues: string[]): str
 
   return [
     "Analyze the complete raw support interaction below.",
-    "Determine the User and Agent roles from labels and context.",
-    "Extract every distinct User request, the Support Agent's actual troubleshooting, guidance and actions, User actions, exact links and their purposes, remote-support activity, escalations, timeframes, confirmed outcomes and pending ownership in chronological order.",
+    "Determine the User and note-author roles from labels and context; the transcript may label the note author as Agent, Analyst, Technician, Support, or Engineer.",
+    "Extract every distinct User request, my actual troubleshooting, guidance and actions, User actions, exact links and their purposes, remote-support activity, escalations, timeframes, confirmed outcomes and pending ownership in chronological order.",
+    "Write all note-author actions and communications from my first-person point of view using I, and never refer to me as an Agent or any other third-person support role.",
     "Ignore all non-technical conversation.",
     repairInstruction,
     "",
