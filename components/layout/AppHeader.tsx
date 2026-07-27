@@ -18,11 +18,11 @@ export function AppHeader() {
       initial={{ opacity: 0, y: -16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, ease: "easeOut" }}
-      className="sticky top-0 z-50 border-b border-black bg-[#eceee8]/95 backdrop-blur-2xl transition-colors duration-300 dark:border-white/15 dark:bg-[#111]/95"
+      className="sticky top-0 z-50 border-b border-black bg-[#eceee8]/95 backdrop-blur-2xl transition-[background-color,border-color,box-shadow] duration-300 dark:border-[#86bc25]/30 dark:bg-[#050605]/95 dark:shadow-[0_10px_40px_rgba(0,0,0,0.5)]"
     >
       <div className="mx-auto flex h-[76px] w-full max-w-[1840px] items-center justify-between gap-4 px-3 sm:px-5 lg:px-7">
         <div className="flex min-w-0 items-center gap-4">
-          <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-black bg-black text-[#86bc25] dark:border-[#86bc25] dark:bg-[#86bc25] dark:text-black">
+          <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-black bg-black text-[#86bc25] transition-[background-color,border-color,color,box-shadow] duration-300 dark:border-[#b6da73] dark:bg-[#86bc25] dark:text-black dark:shadow-[4px_4px_0_rgba(255,255,255,0.16)]">
             <FileStack className="h-5 w-5" strokeWidth={2.2} />
           </div>
 
@@ -37,7 +37,7 @@ export function AppHeader() {
         </div>
 
         <div className="flex items-center gap-2">
-          <div className="hidden items-center gap-2 border border-black bg-black px-3 py-2 font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-white md:flex dark:border-white/15">
+          <div className="hidden items-center gap-2 border border-black bg-black px-3 py-2 font-mono text-[9px] font-bold uppercase tracking-[0.18em] text-white md:flex dark:border-[#86bc25]/35 dark:bg-[#0b0e0a]">
             <span className="h-1.5 w-1.5 rounded-full bg-[#86bc25]" />
             Internal support system
           </div>
@@ -47,19 +47,19 @@ export function AppHeader() {
             disabled={!mounted}
             aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
             title={isDark ? "Switch to light theme" : "Switch to dark theme"}
-            className="flex h-10 w-10 items-center justify-center border border-black bg-white/60 text-black transition hover:bg-[#86bc25] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#86bc25] disabled:cursor-wait dark:border-white/15 dark:bg-white/[0.06] dark:text-white"
+            className="flex h-10 w-10 items-center justify-center border border-black bg-white/60 text-black transition-[background-color,border-color,color,transform] duration-150 hover:bg-[#86bc25] active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#86bc25] disabled:cursor-wait dark:border-white/20 dark:bg-[#0b0e0a] dark:text-[#86bc25] dark:hover:border-[#b6da73] dark:hover:bg-[#86bc25] dark:hover:text-black"
           >
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.span
-              key={isDark ? "sun" : "moon"}
-              initial={{ opacity: 0, rotate: -35, scale: 0.75 }}
-              animate={{ opacity: 1, rotate: 0, scale: 1 }}
-              exit={{ opacity: 0, rotate: 35, scale: 0.75 }}
-              transition={{ duration: 0.18 }}
-            >
-              {isDark ? <Sun className="h-4.5 w-4.5" /> : <Moon className="h-4.5 w-4.5" />}
-            </motion.span>
-          </AnimatePresence>
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={isDark ? "sun" : "moon"}
+                initial={{ opacity: 0, rotate: -35, scale: 0.75 }}
+                animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                exit={{ opacity: 0, rotate: 35, scale: 0.75 }}
+                transition={{ duration: 0.18 }}
+              >
+                {isDark ? <Sun className="h-4.5 w-4.5" /> : <Moon className="h-4.5 w-4.5" />}
+              </motion.span>
+            </AnimatePresence>
           </button>
         </div>
       </div>
