@@ -60,14 +60,6 @@ export function HeroSection() {
               <span className="font-semibold text-foreground/90">
                 Work Notes
               </span>
-              , concise{" "}
-              <span className="font-semibold text-foreground/90">
-                Resolution Notes
-              </span>{" "}
-              and thorough{" "}
-              <span className="font-semibold text-foreground/90">
-                Root Cause Analysis
-              </span>{" "}
               from Microsoft Teams chats, call transcripts, ticket notes and
               troubleshooting sessions — in seconds.
             </p>
@@ -173,7 +165,7 @@ function HeroStatCards() {
         />
       </div>
 
-      {/* Large "sample output" preview card on bottom */}
+      {/* Large sample notes preview card on bottom */}
       <motion.div
         initial={{ opacity: 0, y: 14 }}
         animate={{ opacity: 1, y: 0 }}
@@ -183,24 +175,17 @@ function HeroStatCards() {
         <div className="flex items-center justify-between border-b border-border/60 px-5 py-3">
           <div className="flex items-center gap-2">
             <span className="h-2 w-2 rounded-full bg-deloitte-gradient" />
-            <span className="text-sm font-semibold">Latest Output</span>
+            <span className="text-sm font-semibold">Latest Work Notes</span>
           </div>
           <span className="text-[11px] font-medium text-muted-foreground">
             Outlook Credential Incident · 4 min ago
           </span>
         </div>
-        <div className="grid gap-4 p-5 md:grid-cols-3 md:gap-3">
+        <div className="p-5">
           <MiniDoc title="Work Notes" tint="blue" lines={[
             "Issue: Outlook prompts for credentials repeatedly.",
             "TS Performed: cleared cached creds, recreated profile.",
             "Next: Monitor for recurrence in 24h.",
-          ]} />
-          <MiniDoc title="Resolution" tint="orange" lines={[
-            "Cleared stale Windows Credential Manager entries and recreated the Outlook profile. User confirmed mailbox sync. Resolved.",
-          ]} />
-          <MiniDoc title="RCA" tint="purple" lines={[
-            "Root Cause: corrupted Neutralbox credential.",
-            "Corrective: Credential refresh + profile rebuild.",
           ]} />
         </div>
       </motion.div>
