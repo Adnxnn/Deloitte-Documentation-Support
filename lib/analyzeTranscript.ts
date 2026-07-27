@@ -153,6 +153,16 @@ function removeActorPrefix(value: string): string {
     .trim();
 }
 
+function toFirstPersonAction(value: string): string {
+  const clean = removeActorPrefix(value).trim();
+  if (!clean) return "";
+  if (/^i\b/i.test(clean)) {
+    return ensureSentence(clean.replace(/^i\b/i, "I"));
+  }
+
+  return ensureSentence(`I ${clean.charAt(0).toLowerCase()}${clean.slice(1)}`);
+}
+
 function splitActionSentence(value: string): string[] {
   const clean = removeActorPrefix(value);
   const pieces = clean
@@ -303,7 +313,7 @@ export function analyzeTranscriptLocally(transcript: string): AnalyzerOutput {
     actionSource
       .flatMap(splitActionSentence)
       .filter((line) => hasActionVerb(line) && !isLikelyGreeting(line))
-      .map((line) => ensureSentence(removeActorPrefix(line))),
+      .map(toFirstPersonAction),
   );
 
   const documentedFollowUp = allSentences
@@ -311,8 +321,8 @@ export function analyzeTranscriptLocally(transcript: string): AnalyzerOutput {
     .map((sentence) =>
       ensureSentence(
         sentence
-          .replace(/^the ticket will remain open for the agent to\s+/i, "Kept the ticket open to ")
-          .replace(/^the ticket will remain open\s+/i, "Kept the ticket open "),
+          .replace(/^the ticket will remain open for the agent to\s+/i, "I kept the ticket open to ")
+          .replace(/^the ticket will remain open\s+/i, "I kept the ticket open "),
       ),
     );
 
