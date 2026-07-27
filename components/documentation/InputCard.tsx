@@ -95,7 +95,7 @@ export function InputCard() {
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, ease: "easeOut" }}
-      className="relative isolate overflow-hidden border border-black bg-[#f7f8f4] shadow-[8px_8px_0_rgba(17,17,17,0.14)]"
+      className="relative isolate overflow-hidden border border-black bg-[#f7f8f4] shadow-[8px_8px_0_rgba(17,17,17,0.14)] transition-[background-color,border-color,box-shadow] duration-300 dark:border-white/20 dark:bg-[#080a08] dark:shadow-[8px_8px_0_rgba(134,188,37,0.28)]"
       aria-labelledby="transcript-heading"
     >
       <div
@@ -104,17 +104,17 @@ export function InputCard() {
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -left-16 top-8 h-48 w-48 rounded-full bg-[#86bc25]/12 blur-3xl"
+        className="pointer-events-none absolute -left-16 top-8 h-48 w-48 rounded-full bg-[#86bc25]/12 blur-3xl dark:bg-[#86bc25]/16"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-8 bottom-0 h-52 w-52 rounded-full bg-black/8 blur-3xl"
+        className="pointer-events-none absolute -right-8 bottom-0 h-52 w-52 rounded-full bg-black/8 blur-3xl dark:bg-white/[0.035]"
       />
 
       <div className="relative z-10 flex min-h-[640px] flex-col p-4 sm:p-5 lg:p-6">
-        <div className="mb-4 flex items-start justify-between gap-4 border-b border-black pb-4">
+        <div className="mb-4 flex items-start justify-between gap-4 border-b border-black pb-4 transition-colors duration-300 dark:border-white/20">
           <div className="flex min-w-0 items-center gap-3.5">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-black bg-[#86bc25]">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center border border-black bg-[#86bc25] dark:border-[#b6da73]">
               <FileText className="h-5 w-5 text-black" strokeWidth={2.2} />
             </div>
             <div className="min-w-0">
@@ -126,7 +126,7 @@ export function InputCard() {
               </p>
             </div>
           </div>
-          <span className="border border-black bg-white px-3 py-1.5 font-mono text-[10px] font-bold text-slate-600">
+          <span className="border border-black bg-white px-3 py-1.5 font-mono text-[10px] font-bold text-slate-600 transition-colors duration-300 dark:border-white/20 dark:bg-[#10140e] dark:text-white/70">
             {charCount.toLocaleString()} / {MAX_TRANSCRIPT_LENGTH.toLocaleString()}
           </span>
         </div>
@@ -148,14 +148,14 @@ export function InputCard() {
             aria-invalid={Boolean(error)}
             aria-describedby={error ? "transcript-error" : "transcript-help"}
             placeholder="Paste the complete chat transcript, call summary, or customer interaction here…"
-            className="h-full min-h-[430px] resize-none rounded-none border border-black bg-[#fffdfa]/82 px-5 py-5 text-[15px] leading-7 text-slate-800 shadow-[inset_5px_5px_0_rgba(17,17,17,0.035)] outline-none placeholder:text-slate-400 focus-visible:border-[#5d810e] focus-visible:ring-2 focus-visible:ring-[#86bc25]/40 disabled:cursor-wait disabled:opacity-65"
+            className="h-full min-h-[430px] resize-none rounded-none border border-black bg-[#fffdfa]/82 px-5 py-5 text-[15px] leading-7 text-slate-800 shadow-[inset_5px_5px_0_rgba(17,17,17,0.035)] outline-none placeholder:text-slate-400 focus-visible:border-[#5d810e] focus-visible:ring-2 focus-visible:ring-[#86bc25]/40 disabled:cursor-wait disabled:opacity-65 dark:border-white/20 dark:bg-[#090b09] dark:text-[#f2f4ef] dark:shadow-[inset_5px_5px_0_rgba(134,188,37,0.025)] dark:focus-visible:border-[#86bc25] dark:focus-visible:ring-[#86bc25]/35"
             spellCheck={false}
           />
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-x-4 bottom-4 h-20 rounded-2xl bg-gradient-to-t from-[#fffaf4] via-[#fffaf4]/82 to-transparent"
+            className="pointer-events-none absolute inset-x-4 bottom-4 h-20 rounded-2xl bg-gradient-to-t from-[#fffaf4] via-[#fffaf4]/82 to-transparent dark:rounded-none dark:from-[#090b09] dark:via-[#090b09]/90"
           />
-          <p id="transcript-help" className="pointer-events-none absolute bottom-4 left-5 text-[11px] text-slate-400">
+          <p id="transcript-help" className="pointer-events-none absolute bottom-4 left-5 text-[11px] text-slate-400 dark:text-white/42">
             Press Ctrl/⌘ + Enter to analyze
           </p>
         </div>
@@ -168,7 +168,7 @@ export function InputCard() {
               initial={{ opacity: 0, y: -6 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
-              className="mt-4 flex items-center gap-2 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700"
+              className="mt-4 flex items-center gap-2 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700 dark:rounded-none dark:border-rose-400/45 dark:bg-[#250d0d] dark:text-rose-200"
             >
               <AlertCircle className="h-4 w-4 shrink-0" />
               {error}
@@ -184,16 +184,16 @@ export function InputCard() {
               exit={{ opacity: 0, height: 0, y: 8 }}
               className="overflow-hidden"
             >
-              <div className="mt-4 flex items-center gap-4 rounded-2xl border border-[#d8d9ef] bg-[linear-gradient(135deg,rgba(134,188,37,0.08),rgba(134,188,37,0.07),rgba(93,129,14,0.08))] px-4 py-3.5">
+              <div className="mt-4 flex items-center gap-4 rounded-2xl border border-[#d8d9ef] bg-[linear-gradient(135deg,rgba(134,188,37,0.08),rgba(134,188,37,0.07),rgba(93,129,14,0.08))] px-4 py-3.5 dark:rounded-none dark:border-[#86bc25]/30 dark:bg-[linear-gradient(135deg,rgba(134,188,37,0.11),rgba(10,13,9,0.92),rgba(93,129,14,0.1))]">
                 <MiniAnalyzerOrb />
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center justify-between gap-3">
-                    <p className="truncate text-sm font-medium text-slate-800">
+                    <p className="truncate text-sm font-medium text-slate-800 dark:text-white">
                       Analyzing interaction
                     </p>
-                    <span className="text-[11px] text-slate-500">Step {Math.min(currentStep || 1, 6)} of 6</span>
+                    <span className="text-[11px] text-slate-500 dark:text-white/50">Step {Math.min(currentStep || 1, 6)} of 6</span>
                   </div>
-                  <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/70">
+                  <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-white/70 dark:bg-white/10">
                     <motion.div
                       className="h-full rounded-full bg-gradient-to-r from-black via-[#5d810e] to-[#86bc25]"
                       animate={{ width: `${(Math.min(currentStep || 1, 6) / 6) * 100}%` }}
@@ -212,7 +212,7 @@ export function InputCard() {
             variant="ghost"
             onClick={clearTranscript}
             disabled={isGenerating || (!transcript && !error)}
-            className="h-12 justify-center rounded-none border border-black bg-white/72 px-5 font-bold uppercase text-slate-700 hover:bg-black hover:text-white focus-visible:ring-2 focus-visible:ring-[#86bc25]/40 sm:justify-start"
+            className="h-12 justify-center rounded-none border border-black bg-white/72 px-5 font-bold uppercase text-slate-700 hover:bg-black hover:text-white focus-visible:ring-2 focus-visible:ring-[#86bc25]/40 dark:border-white/20 dark:bg-[#0b0e0a] dark:text-white/75 dark:hover:border-[#86bc25] dark:hover:bg-[#86bc25] dark:hover:text-black sm:justify-start"
           >
             <Trash2 className="h-4 w-4" />
             Clear
@@ -237,7 +237,7 @@ export function InputCard() {
               type="button"
               onClick={() => void analyzeInteraction()}
               disabled={isGenerating || isOverLimit}
-              className="relative h-12 w-full rounded-none border border-black bg-[#86bc25] px-6 font-black uppercase text-black shadow-[5px_5px_0_#111] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:brightness-105 focus-visible:ring-2 focus-visible:ring-[#86bc25]/60 sm:w-auto"
+              className="relative h-12 w-full rounded-none border border-black bg-[#86bc25] px-6 font-black uppercase text-black shadow-[5px_5px_0_#111] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:brightness-105 focus-visible:ring-2 focus-visible:ring-[#86bc25]/60 dark:border-[#b6da73] dark:shadow-[5px_5px_0_rgba(255,255,255,0.2)] sm:w-auto"
             >
               {isGenerating ? (
                 <MiniSpinner />
