@@ -7,12 +7,10 @@ export type GenerationStep = 1 | 2 | 3 | 4 | 5 | 6 | 7 | null;
 export interface WorkNotes {
   issue: string;
   tsPerformed: string[];
-  output: string;
 }
 
 export interface DocumentationOutput {
   workNotes: WorkNotes;
-  resolutionNotes: string;
 }
 
 export interface AppState {
@@ -31,9 +29,7 @@ export interface AppState {
   editableField:
     | null
     | "workNotes.issue"
-    | "workNotes.output"
-    | "workNotes.tsPerformed"
-    | "resolutionNotes";
+    | "workNotes.tsPerformed";
   setEditableField: (field: AppState["editableField"]) => void;
   updateOutput: (patch: Partial<DocumentationOutput>) => void;
 }
@@ -43,7 +39,7 @@ const stepMessages: Record<number, string> = {
   2: "Understanding the reported issue...",
   3: "Extracting completed actions...",
   4: "Building Work Notes...",
-  5: "Building Resolution Notes...",
+  5: "Organizing chronological notes...",
   6: "Validating transcript grounding...",
   7: "Completed.",
 };
@@ -53,7 +49,6 @@ export { stepMessages };
 const emptyWorkNotes: WorkNotes = {
   issue: "",
   tsPerformed: [],
-  output: "",
 };
 
 export const useAppStore = create<AppState>((set) => ({
