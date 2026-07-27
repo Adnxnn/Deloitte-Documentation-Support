@@ -40,33 +40,33 @@
   }
 
   .dark {
-    --background: 222 23% 9%;
-    --foreground: 210 40% 98%;
-    --card: 222 19% 14%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 19% 14%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 218 86% 66%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 222 16% 18%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 222 15% 17%;
-    --muted-foreground: 215 16% 70%;
-    --accent: 25 87% 64%;
-    --accent-foreground: 222 35% 12%;
+    --background: 120 9% 2%;
+    --foreground: 0 0% 96%;
+    --card: 120 8% 5%;
+    --card-foreground: 0 0% 96%;
+    --popover: 120 7% 6%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 82 67% 44%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 120 6% 10%;
+    --secondary-foreground: 0 0% 94%;
+    --muted: 120 5% 11%;
+    --muted-foreground: 0 0% 66%;
+    --accent: 82 67% 44%;
+    --accent-foreground: 0 0% 4%;
     --destructive: 0 72% 54%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 220 14% 24%;
-    --input: 220 14% 24%;
-    --ring: 218 86% 66%;
-    --sidebar-background: 222 23% 9%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 218 86% 66%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 222 16% 18%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 220 14% 24%;
-    --sidebar-ring: 218 86% 66%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 90 8% 22%;
+    --input: 90 8% 24%;
+    --ring: 82 67% 44%;
+    --sidebar-background: 120 9% 2%;
+    --sidebar-foreground: 0 0% 96%;
+    --sidebar-primary: 82 67% 44%;
+    --sidebar-primary-foreground: 0 0% 4%;
+    --sidebar-accent: 120 6% 10%;
+    --sidebar-accent-foreground: 0 0% 94%;
+    --sidebar-border: 90 8% 22%;
+    --sidebar-ring: 82 67% 44%;
   }
 
   * {
@@ -80,6 +80,7 @@
 
   html.dark {
     color-scheme: dark;
+    background: #050605;
   }
 
   body {
@@ -89,7 +90,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    transition: background-color 300ms ease, color 300ms ease;
+    transition:
+      background-color 240ms cubic-bezier(0.4, 0, 0.2, 1),
+      color 180ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .font-display {
@@ -112,7 +115,8 @@
   }
 
   .dark body::before {
-    opacity: 0.2;
+    opacity: 0.16;
+    mix-blend-mode: screen;
   }
 
   body > * {
@@ -133,14 +137,15 @@
   }
 
   .dark textarea {
-    background-color: #20242e !important;
-    color: #f1f5f9 !important;
-    -webkit-text-fill-color: #f1f5f9 !important;
+    background-color: #090b09 !important;
+    color: #f2f4ef !important;
+    -webkit-text-fill-color: #f2f4ef !important;
+    caret-color: #86bc25;
   }
 
   .dark textarea::placeholder {
-    color: #64748b !important;
-    -webkit-text-fill-color: #64748b !important;
+    color: #8e938b !important;
+    -webkit-text-fill-color: #8e938b !important;
   }
 
   ::selection {
@@ -149,31 +154,28 @@
   }
 
   :focus-visible {
-    outline: none;
+    outline: 2px solid #86bc25;
+    outline-offset: 2px;
   }
 }
 
-/* Dark mode preserves the black, white and Deloitte green workbench system. */
+/* Dark mode fallback rules keep legacy light surfaces inside the same workbench system. */
 @layer components {
   .dark [class*="bg-[#f3efea]"] {
-    background-color: #11141b !important;
+    background-color: #080a08 !important;
   }
 
   .dark [class*="bg-[linear-gradient(180deg,#f6f2ed"] {
-    background-image: linear-gradient(180deg, #11141b 0%, #151922 100%) !important;
-  }
-
-  .dark [class*="bg-white/"] {
-    background-color: rgba(255, 255, 255, 0.055) !important;
+    background-image: linear-gradient(180deg, #050605 0%, #0a0d09 100%) !important;
   }
 
   .dark [class*="bg-[#fffdfa]"],
   .dark [class*="bg-[#fbf8f4]"] {
-    background-color: #20242e !important;
+    background-color: #090b09 !important;
   }
 
   .dark [class*="from-[#fffaf4]"] {
-    background-image: linear-gradient(to top, #20242e, rgba(32, 36, 46, 0.84), transparent) !important;
+    background-image: linear-gradient(to top, #090b09, rgba(9, 11, 9, 0.86), transparent) !important;
   }
 
   .dark .text-slate-900,
@@ -183,18 +185,17 @@
 
   .dark .text-slate-700,
   .dark .text-slate-600 {
-    color: #cbd5e1 !important;
+    color: #cdd1c9 !important;
   }
 
   .dark .text-slate-500,
   .dark .text-slate-400 {
-    color: #94a3b8 !important;
+    color: #969c92 !important;
   }
 
   .dark [class*="border-[#ddd4cb]"],
   .dark [class*="border-[#e7e0d9]"],
-  .dark [class*="border-[#efe7df]"],
-  .dark [class*="border-white/"] {
+  .dark [class*="border-[#efe7df]"] {
     border-color: rgba(255, 255, 255, 0.1) !important;
   }
 }
@@ -250,8 +251,16 @@
     background: rgba(148, 163, 184, 0.22);
   }
 
+  .dark .scrollbar-thin {
+    scrollbar-color: rgba(134, 188, 37, 0.42) transparent;
+  }
+
+  .dark .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(134, 188, 37, 0.34);
+  }
+
   .focus-ring-gradient {
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.22), 0 0 0 1px rgba(249, 115, 22, 0.35) inset;
+    box-shadow: 0 0 0 3px rgba(134, 188, 37, 0.22), 0 0 0 1px rgba(134, 188, 37, 0.5) inset;
   }
 }
 
