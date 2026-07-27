@@ -23,7 +23,7 @@ export default function HomeWorkspacePage() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <div className="relative isolate min-h-[calc(100vh-76px)] overflow-hidden bg-[#eceee8]">
+    <div className="relative isolate min-h-[calc(100vh-76px)] overflow-hidden bg-[#eceee8] transition-colors duration-300 dark:bg-[#050605]">
       <WorkbenchBackground reducedMotion={Boolean(reduceMotion)} />
 
       <section className="relative z-10 mx-auto w-full max-w-[1840px] px-3 pb-12 pt-5 sm:px-5 lg:px-7">
@@ -31,16 +31,16 @@ export default function HomeWorkspacePage() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.2, 0, 0, 1] }}
-          className="relative mb-4 overflow-hidden border border-black bg-[#dfe3da] shadow-[8px_8px_0_#111]"
+          className="relative mb-4 overflow-hidden border border-black bg-[#dfe3da] shadow-[8px_8px_0_#111] transition-[background-color,border-color,box-shadow] duration-300 dark:border-white/20 dark:bg-[#080a08] dark:shadow-[8px_8px_0_rgba(93,129,14,0.75)]"
         >
           <div className="grid min-h-[400px] lg:grid-cols-[minmax(0,1fr)_430px]">
-            <div className="relative z-10 flex flex-col justify-between border-b border-black p-5 sm:p-7 lg:border-b-0 lg:border-r lg:p-9">
+            <div className="relative z-10 flex flex-col justify-between border-b border-black p-5 transition-colors duration-300 dark:border-white/20 sm:p-7 lg:border-b-0 lg:border-r lg:p-9">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-2 bg-black px-3 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-white">
+                <span className="inline-flex items-center gap-2 bg-black px-3 py-2 text-[10px] font-black uppercase tracking-[0.22em] text-white dark:border dark:border-[#86bc25]/45 dark:bg-[#0d100c]">
                   <ScanText className="h-3.5 w-3.5 text-[#86bc25]" />
                   Support intelligence workspace
                 </span>
-                <span className="inline-flex items-center gap-2 border border-black bg-[#f5f6f2] px-3 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-black">
+                <span className="inline-flex items-center gap-2 border border-black bg-[#f5f6f2] px-3 py-2 text-[10px] font-black uppercase tracking-[0.18em] text-black transition-colors duration-300 dark:border-white/20 dark:bg-white/[0.06] dark:text-white">
                   <span className="relative flex h-2 w-2">
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#86bc25] opacity-70" />
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-[#5d810e]" />
@@ -50,26 +50,26 @@ export default function HomeWorkspacePage() {
               </div>
 
               <div className="py-10 sm:py-14">
-                <p className="mb-3 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-black/55">
+                <p className="mb-3 font-mono text-[10px] font-bold uppercase tracking-[0.28em] text-black/55 dark:text-white/48">
                   From conversation / To evidence
                 </p>
-                <h1 className="max-w-6xl text-balance font-display text-[clamp(3.6rem,8.6vw,9.5rem)] font-black uppercase leading-[0.72] tracking-[-0.085em] text-[#111]">
+                <h1 className="max-w-6xl text-balance font-display text-[clamp(3.6rem,8.6vw,9.5rem)] font-black uppercase leading-[0.72] tracking-[-0.085em] text-[#111] transition-colors duration-300 dark:text-[#f4f6f1]">
                   Support
-                  <span className="block translate-x-[0.04em] text-[#5d810e]">Noise→Notes</span>
+                  <span className="block translate-x-[0.04em] text-[#5d810e] dark:text-[#86bc25]">Noise→Notes</span>
                 </h1>
               </div>
 
-              <div className="grid gap-px border border-black bg-black sm:grid-cols-4">
+              <div className="grid gap-px border border-black bg-black dark:border-white/20 dark:bg-white/20 sm:grid-cols-4">
                 {["Issue + impact", "Actions + owners", "Links + purpose", "Outcome + next"].map((item, index) => (
-                  <div key={item} className="group flex items-center gap-2 bg-[#f5f6f2] px-3 py-3 text-[10px] font-black uppercase tracking-[0.08em] text-black transition-colors hover:bg-[#86bc25]">
-                    <span className="font-mono text-black/45">0{index + 1}</span>
+                  <div key={item} className="group flex items-center gap-2 bg-[#f5f6f2] px-3 py-3 text-[10px] font-black uppercase tracking-[0.08em] text-black transition-colors hover:bg-[#86bc25] dark:bg-[#0d100c] dark:text-white dark:hover:bg-[#86bc25] dark:hover:text-black">
+                    <span className="font-mono text-black/45 dark:text-white/42 dark:group-hover:text-black/55">0{index + 1}</span>
                     {item}
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="relative min-h-[360px] overflow-hidden bg-[#111] p-6 text-white lg:min-h-full">
+            <div className="relative min-h-[360px] overflow-hidden bg-[#111] p-6 text-white transition-colors duration-300 dark:bg-[#030403] lg:min-h-full">
               <DocumentOrb reducedMotion={Boolean(reduceMotion)} />
               <div className="relative z-20 flex h-full flex-col justify-between">
                 <div className="flex items-center justify-between font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-white/45">
@@ -89,12 +89,12 @@ export default function HomeWorkspacePage() {
               </div>
             </div>
           </div>
-          <div aria-hidden className="absolute -bottom-10 left-[42%] hidden text-[180px] font-black leading-none tracking-[-0.12em] text-black/[0.025] lg:block">
+          <div aria-hidden className="absolute -bottom-10 left-[42%] hidden text-[180px] font-black leading-none tracking-[-0.12em] text-black/[0.025] dark:text-white/[0.025] lg:block">
             360
           </div>
         </motion.div>
 
-        <div className="mb-3 flex items-center gap-3 border-x border-t border-black bg-[#111] px-4 py-3 font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-white/55">
+        <div className="mb-3 flex items-center gap-3 border-x border-t border-black bg-[#111] px-4 py-3 font-mono text-[9px] font-bold uppercase tracking-[0.2em] text-white/55 transition-colors duration-300 dark:border-[#86bc25]/35 dark:bg-[#080a08]">
           <Circle className="h-2.5 w-2.5 fill-[#86bc25] text-[#86bc25]" />
           <span className="text-white">01 / Source interaction</span>
           <ArrowDown className="h-3 w-3 text-[#86bc25]" />
@@ -118,15 +118,15 @@ function WorkbenchBackground({ reducedMotion }: { reducedMotion: boolean }) {
 
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0 bg-[#eceee8]" />
-      <div className="absolute inset-0 opacity-[0.5] [background-image:linear-gradient(rgba(17,17,17,0.065)_1px,transparent_1px),linear-gradient(90deg,rgba(17,17,17,0.065)_1px,transparent_1px)] [background-size:36px_36px]" />
+      <div className="absolute inset-0 bg-[#eceee8] transition-colors duration-300 dark:bg-[#050605]" />
+      <div className="absolute inset-0 opacity-[0.5] [background-image:linear-gradient(rgba(17,17,17,0.065)_1px,transparent_1px),linear-gradient(90deg,rgba(17,17,17,0.065)_1px,transparent_1px)] [background-size:36px_36px] dark:opacity-80 dark:[background-image:linear-gradient(rgba(134,188,37,0.075)_1px,transparent_1px),linear-gradient(90deg,rgba(134,188,37,0.075)_1px,transparent_1px)]" />
 
       <motion.div
         className="absolute right-[-8%] top-[2%] h-[360px] w-[360px] rounded-full bg-[#86bc25]/18 blur-[90px]"
         animate={reducedMotion ? undefined : { x: [0, -28, 0], y: [0, 20, 0], scale: [1, 1.08, 1] }}
         transition={transition}
       />
-      <div className="absolute -left-16 top-[36%] h-44 w-44 rotate-12 border-[28px] border-black/[0.025]" />
+      <div className="absolute -left-16 top-[36%] h-44 w-44 rotate-12 border-[28px] border-black/[0.025] dark:border-[#86bc25]/[0.035]" />
     </div>
   );
 }
