@@ -135,7 +135,7 @@ function labelForStep(s: number) {
       "Understand",
       "Extract",
       "Work Notes",
-      "Resolution",
+      "Organize",
       "RCA",
       "Done",
     ] as const
