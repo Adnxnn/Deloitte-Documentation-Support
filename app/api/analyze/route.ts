@@ -22,21 +22,11 @@ const responseSchema = {
             "Concise professional ServiceNow bullets covering every distinct request, confirmed context, questions and answers, analyst action, user action, advice, Zoom or remote-support activity, exact URL with purpose, request or form submitted, escalation, timeframe, outcome, and pending action with owner. Keep separate issues distinct and preserve chronology.",
           items: { type: "string" },
         },
-        output: {
-          type: "string",
-          description:
-            "One Output entry stating only the final technical result or finding after troubleshooting in 1 to 3 concise sentences.",
-        },
       },
-      required: ["issue", "tsPerformed", "output"],
-    },
-    resolutionNotes: {
-      type: "string",
-      description:
-        "Exactly two concise professional sentences: current Incident status, followed by the confirmed fix and validation or the outstanding dependency.",
+      required: ["issue", "tsPerformed"],
     },
   },
-  required: ["workNotes", "resolutionNotes"],
+  required: ["workNotes"],
 } as const;
 
 const systemInstruction = [
@@ -60,11 +50,9 @@ const systemInstruction = [
   "Use the TS Performed array as the complete chronological activity record. Include all material issue, action, guidance, source, escalation, timeframe, outcome, and pending-owner bullets required to document the interaction.",
   "Include actions the Agent directly performed and troubleshooting the Agent instructed the User to perform. Phrase instructions accurately as Guided the User to..., Advised the User to..., Instructed the User to..., or Requested the User to....",
   "Do not claim the Agent performed an action completed by the User, and do not claim an instructed User action was completed unless the conversation confirms completion.",
-  "Write one Output entry containing 1 to 3 concise professional sentences stating the actual technical result after troubleshooting.",
-  "Write exactly two short Resolution Notes sentences. Sentence 1 states the current Incident status. Sentence 2 states the confirmed fix and User validation when resolved, or the precise outstanding dependency and ownership when unresolved.",
   "Use User, Agent, Incident, Ticket, or Case where applicable. Do not use Customer, Caller, Client, I, We, You, He, She, or They in the generated documentation.",
-  "Return only workNotes.issue, workNotes.tsPerformed, workNotes.output, and resolutionNotes. Do not return headings, markdown, bullet characters, Summary, RCA, Next Action, recommendations, or any other section.",
-  "Before returning, verify that the Issue belongs to the supported User, every TS item came from the Agent's actual action or instruction, Output reflects the real result, Resolution Notes contain exactly two sentences, conversational filler is absent, and nothing was invented.",
+  "Return only workNotes.issue and workNotes.tsPerformed. Do not return Output, Resolution Notes, headings, markdown, bullet characters, Summary, RCA, Next Action, recommendations, or any other section.",
+  "Before returning, verify that the Issue belongs to the supported User, every TS item is supported by the interaction, conversational filler is absent, and nothing was invented.",
 ].join(" ");
 
 const CONVERSATIONAL_FILLER =
@@ -103,32 +91,22 @@ function isStructurallyValid(value: unknown): value is AnalyzerOutput {
     candidate.workNotes.tsPerformed.length > 0 &&
     candidate.workNotes.tsPerformed.every(
       (item) => typeof item === "string" && item.trim().length > 0,
-    ) &&
-    typeof candidate.workNotes?.output === "string" &&
-    candidate.workNotes.output.trim().length > 0 &&
-    typeof candidate.resolutionNotes === "string" &&
-    candidate.resolutionNotes.trim().length > 0
+    )
   );
 }
 
 function validationIssues(output: AnalyzerOutput): string[] {
   const issues: string[] = [];
   const issueCount = sentenceCount(output.workNotes.issue);
-  const outputCount = sentenceCount(output.workNotes.output);
-  const resolutionCount = sentenceCount(output.resolutionNotes);
 
   if (issueCount < 1 || issueCount > 3) issues.push("Issue must contain 1 to 3 sentences");
   if (output.workNotes.tsPerformed.length > 20) {
     issues.push("TS Performed must contain no more than 20 chronological actions");
   }
-  if (outputCount < 1 || outputCount > 3) issues.push("Output must contain 1 to 3 sentences");
-  if (resolutionCount !== 2) issues.push("Resolution Notes must contain exactly two sentences");
 
   const allText = [
     output.workNotes.issue,
     ...output.workNotes.tsPerformed,
-    output.workNotes.output,
-    output.resolutionNotes,
   ].join(" ");
 
   if (CONVERSATIONAL_FILLER.test(allText)) {
@@ -167,9 +145,7 @@ function normalizeOutput(output: AnalyzerOutput): AnalyzerOutput {
     workNotes: {
       issue: cleanEntry(output.workNotes.issue),
       tsPerformed: uniqueActions,
-      output: cleanEntry(output.workNotes.output),
     },
-    resolutionNotes: cleanEntry(output.resolutionNotes),
   };
 }
 
@@ -183,7 +159,7 @@ function buildInteractionPrompt(transcript: string, repairIssues: string[]): str
   return [
     "Analyze the complete raw support interaction below.",
     "Determine the User and Agent roles from labels and context.",
-    "Extract every distinct User request, the Support Agent's actual troubleshooting, guidance and actions, User actions, exact links and their purposes, remote-support activity, escalations, timeframes, confirmed outcomes and pending ownership in chronological order, followed by exactly two concise Resolution Notes sentences.",
+    "Extract every distinct User request, the Support Agent's actual troubleshooting, guidance and actions, User actions, exact links and their purposes, remote-support activity, escalations, timeframes, confirmed outcomes and pending ownership in chronological order.",
     "Ignore all non-technical conversation.",
     repairInstruction,
     "",
